@@ -1,8 +1,8 @@
 export default function AboutUs() {
   return (
-    <div>
+    <div >
       <div className="container mx-auto">
-        <section className="h-screen">
+        <section className="ms_vh">
           about us page
 
         </section>

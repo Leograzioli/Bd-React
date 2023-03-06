@@ -10,3 +10,7 @@
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+.ms_vh {
+    min-height: calc(100vh - 489px - 80px);
+}
