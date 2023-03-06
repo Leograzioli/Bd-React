@@ -1,0 +1,76 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom"
+
+//components
+import DoctorCard from "../components/DoctorCard"
+
+export default function AdvancedSearch() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [voteInput, setVoteInput] = useState(searchParams.get('vote'))
+  const [specInput, setSpecInput] = useState(searchParams.get('spec'))
+  const [doctorsList, setDoctorsList] = useState([])
+  const [specializations, setSpecializations] = useState([])
+
+  const getDoc = () => {
+    axios.get('http://127.0.0.1:8000/api/guest/doctorslist', {
+      params: {
+        ...(specInput && { spec: specInput }),
+        ...(voteInput && { vote: voteInput })
+      } 
+    })
+      .then(resp => {
+        setDoctorsList(resp.data.doctors.data);
+        console.log(resp.data.doctors);
+        setSpecializations(resp.data.specializations)
+      })
+  }
+
+  //params
+  useEffect( () => {
+    setSearchParams(new URLSearchParams({spec: specInput, vote: voteInput? voteInput : 0}))
+  },[specInput, voteInput])
+
+  //fetch
+  useEffect(() => {
+    getDoc()
+  }, [specInput, voteInput])
+
+  return (
+    <div className="min-h-screen" >
+      <div className="container mx-auto">
+        <div className="bg-gray-100 sm:my-16 p-10">
+          <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
+
+          {/* filters  section */}
+          <div className="mt-10 flex">
+            <select value={searchParams.get('spec')} onChange={(e) => setSpecInput(e.target.value)} className="w-1/2 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
+              <option value="">Select a Specialization</option>
+              {specializations && specializations.map((specialization) => {
+                return <option key={specialization.id} value={specialization.slug}> {specialization.title} </option>
+              })}
+
+            </select>
+            <select value={searchParams.get('vote')} onChange={ (e) => setVoteInput(e.target.value) } className="ml-5 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="vote" id="vote">
+              <option value="0">Vote</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          {/* grid  */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-x-8 lg:gap-y-16 mt-16">
+
+            {doctorsList.length > 0 ? doctorsList.map((doctor) => {
+              return <DoctorCard key={doctor.id} doctor={doctor} />
+            }) : <div>no docs</div>}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

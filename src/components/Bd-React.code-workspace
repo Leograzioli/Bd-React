@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Bd-React",
+			"path": "../.."
+		},
+		{
+			"name": "Bd-laravel",
+			"path": "../../../Bd-laravel"
+		}
+	],
+	"settings": {}
+}

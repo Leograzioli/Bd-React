@@ -1,0 +1,12 @@
+.ms_title_detail::after,
+.ms_title_detail::before{
+    content: '';
+    display: inline-block;
+    width: 2.5rem;
+    border-radius: 50px;
+    height: 3px;
+    vertical-align: middle;
+    background-color: #0f172a; 
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
