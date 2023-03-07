@@ -7,7 +7,7 @@ import DoctorCard from "../components/DoctorCard"
 
 export default function AdvancedSearch() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [voteInput, setVoteInput] = useState('')
+  const [voteInput, setVoteInput] = useState(searchParams.get('vote'))
   const [specInput, setSpecInput] = useState(searchParams.get('spec'))
   const [doctorsList, setDoctorsList] = useState([])
   const [specializations, setSpecializations] = useState([])
@@ -18,6 +18,7 @@ export default function AdvancedSearch() {
   const getDoc = () => {
     axios.get('http://127.0.0.1:8000/api/guest/doctorslist', {
       params: {
+        page: currentPage,
         ...(specInput && { spec: specInput }),
         ...(voteInput && { vote: voteInput })
       }
@@ -30,15 +31,15 @@ export default function AdvancedSearch() {
       })
   }
 
-  //params
+  //url params
   useEffect(() => {
     setSearchParams(new URLSearchParams({ ...(specInput && { spec: specInput }), ...(voteInput && { vote: voteInput }) }))
   }, [specInput, voteInput])
 
-  //fetch
+  //fetch doctors data
   useEffect(() => {
     getDoc()
-  }, [specInput, voteInput])
+  }, [specInput, voteInput, currentPage])
 
   return (
     <div className="ms_vh" >
@@ -61,13 +62,13 @@ export default function AdvancedSearch() {
             {/* vote */}
             <select value={searchParams.get('vote') ? searchParams.get('vote') : ''} onChange={(e) => setVoteInput(e.target.value)} className="ml-5 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="vote" id="vote">
               <option value="">Vote</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              <option className="text-xl" value="1">&#9733;</option>
+              <option className="text-xl" value="2">&#9733;&#9733;</option>
+              <option className="text-xl" value="3">&#9733;&#9733;&#9733;</option>
+              <option className="text-xl" value="4">&#9733;&#9733;&#9733;&#9733;</option>
+              <option className="text-xl" value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
             </select>
-            
+
           </div>
 
           {/* grid  */}

@@ -13,9 +13,9 @@ export default function DoctorCard({ doctor }) {
 
                 {/* contact info  */}
                 <h2 className="text-2xl text-center mt-8 font-semibold text-slate-900">{doctor.name}</h2>
-                <p className="mt-6"> {doctor.email} </p>
+                <p className="mt-6"> <span className="font-semibold"><i className="fa-solid fa-envelope"></i></span> {doctor.email} </p>
                 <p className="mt-1">
-                    <span className="font-semibold"> telefono:</span> {doctor.user_detail?.phone}
+                    <span className="font-semibold"> <i className="fa-solid fa-phone"></i></span> {doctor.user_detail?.phone}
                 </p>
 
                 {/* specializations */}
@@ -27,8 +27,15 @@ export default function DoctorCard({ doctor }) {
                     </span>
                 </div>
                 <div className="flex justify-between mt-8">
-                    <p>stars {doctor.feedback_avg_vote}</p>
-                    <Link to={'/about-us'}>Vedi profile</Link>
+                    <p>
+                        {Array.from({ length: 5 }, (_, i) => (
+                            <i
+                                key={i}
+                                className={`fa-star ${i < Math.trunc(doctor.feedback_avg_vote) ? 'fa-solid' : 'fa-regular'}`}
+                            ></i>
+                        ))}
+                    </p>
+                    <Link to={`/profile/${doctor.id}`}>Vedi profile</Link>
                 </div>
             </div>
         </div>

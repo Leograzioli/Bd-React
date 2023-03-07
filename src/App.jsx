@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop'
 import AppMain from './pages/AppMain'
 import AboutUs from './pages/AboutUs'
 import AdvancedSearch from './pages/AdvancedSearch'
+import DoctorProfile from './pages/DoctorProfile'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<AppMain />} />
           <Route path='/about-us' element={<AboutUs />} />
           <Route path='/search' element={<AdvancedSearch />} />
+          <Route path='/profile/:id' element={<DoctorProfile />}/>
         </Routes>
         <AppFooter />
       </BrowserRouter>
