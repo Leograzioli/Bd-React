@@ -48,10 +48,10 @@ export default function AdvancedSearch() {
           <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
 
           {/* filters  section */}
-          <div className="mt-10 flex">
+          <div className="mt-16 flex justify-center">
 
             {/* specializations */}
-            <select value={searchParams.get('spec') ? searchParams.get('spec') : ''} onChange={(e) => setSpecInput(e.target.value)} className="w-1/2 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
+            <select value={searchParams.get('spec') ? searchParams.get('spec') : ''} onChange={(e) => setSpecInput(e.target.value)} className="w-1/3 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
               <option value="">Select a Specialization</option>
               {specializations && specializations.map((specialization) => {
                 return <option key={specialization.id} value={specialization.slug}> {specialization.title} </option>
