@@ -2,7 +2,7 @@
 export default function AppFooter() {
     return (
         <footer className="bg-blue-900 py-16">
-            <div className="container px-5 sm:px-0 mx-auto">
+            <div className="container px-5 sm:px-0 mx-auto max-w-[1200px]">
 
                 {/* top  */}
                 <div className="py-8 text-white grid sm:grid-cols-2 lg:grid-cols-4 gap-16 pb-16 border-b-2 text-center">

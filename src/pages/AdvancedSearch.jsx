@@ -1,4 +1,5 @@
 import axios from "axios"
+import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
@@ -21,6 +22,10 @@ export default function AdvancedSearch() {
         page: currentPage,
         ...(specInput && { spec: specInput }),
         ...(voteInput && { vote: voteInput })
+      },
+      headers: {
+
+        Authorization: `Bearer ${Cookies.get('token')}`
       }
     })
       .then(resp => {

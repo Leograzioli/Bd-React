@@ -7,6 +7,7 @@ export default function DoctorProfile() {
             <div className="container mx-auto my-16 bg-gray-100">
 
                 ciao sono il medico  {id}
+                
             </div>
         </div>
     )

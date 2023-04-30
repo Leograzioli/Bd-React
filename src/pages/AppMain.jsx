@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import Cookies from "js-cookie"
 
 // components
 import AppJumbotron from "../components/AppJumbotron"
@@ -17,25 +18,46 @@ function AppMain() {
     const firstPage = 1
     const navigate = useNavigate()
 
-
     const getDoc = () => {
-        axios.get('http://127.0.0.1:8000/api/guest/doctorslist' , {
+
+        axios.get('http://127.0.0.1:8000/api/guest/doctorslist', {
             params: {
                 page: currentPage
+            },
+            headers: {
+
+                Authorization: `Bearer ${Cookies.get('token')}`
             }
-        })
-            .then(resp => {
-                console.log(resp.data);
-                setDoctorsList(resp.data.doctors.data);
-                setCurrentPage(resp.data.doctors.current_page)
-                setLastPage(resp.data.doctors.last_page)
-                setSpecializations(resp.data.specializations)
-                if (specializationValue) {
-                    navigate(`/search?spec=${specializationValue}`)
+        }).then(resp => {
+            setDoctorsList(resp.data.doctors.data);
+            setCurrentPage(resp.data.doctors.current_page)
+            setLastPage(resp.data.doctors.last_page)
+            setSpecializations(resp.data.specializations)
+
+            if (specializationValue) {
+                navigate(`/search?spec=${specializationValue}`)
+            }
+        }).catch(error => {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                if (error.response.data.message === 'Unauthenticated.') {
+                    navigate('/login');
                 }
-            }).catch((err) => {
-                console.log(err);
-            })
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+        })
     }
 
     useEffect(() => {
@@ -45,7 +67,7 @@ function AppMain() {
     return (
         <div>
             <AppJumbotron />
-            <div className="container mx-auto">
+            <section id="doctors" className="container max-w-[1200px] mx-auto">
                 <div className="bg-gray-100 sm:my-16 p-10 ">
 
                     {/* section title  */}
@@ -61,7 +83,7 @@ function AppMain() {
                     </div>
 
                     {/* grid  */}
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-x-8 lg:gap-y-16">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12">
 
                         {doctorsList && doctorsList.map((doctor) => {
                             return <DoctorCard key={doctor.id} doctor={doctor} />
@@ -70,15 +92,15 @@ function AppMain() {
                     </div>
 
                     {/* pagination */}
-                    <div className="flex justify-center mt-16 pb-5">
-                        <div onClick={ () => currentPage > firstPage && setCurrentPage(currentPage - 1 ) } className="mr-3 cursor-pointer hover:scale-105">previous</div>
-                        {currentPage > firstPage && <div className="cursor-pointer hover:scale-125" onClick={ () => setCurrentPage(currentPage - 1) }>{ currentPage -1 }</div>}
-                        <div className={currentPage === currentPage ? 'bg-blue-500 mx-2 px-1' : ''}>{ currentPage }</div>
-                        {currentPage < lastPage && <div className="cursor-pointer hover:scale-125" onClick={ ()=> setCurrentPage(currentPage + 1) }>{ currentPage +1 }</div>}
-                        <div onClick={() => currentPage < lastPage && setCurrentPage(currentPage + 1)} className="ml-3 cursor-pointer hover:scale-105">next</div>
+                    <div className="flex items-center justify-center mt-16 pb-5">
+                        <a href="#doctors" onClick={() => currentPage > firstPage && setCurrentPage(currentPage - 1)} className="mr-3 cursor-pointer hover:scale-105 bg-blue-500 py-1 px-3 rounded-md">previous</a>
+                        {currentPage > firstPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage - 1)}>{currentPage - 1}</div>}
+                        <div className={currentPage === currentPage ? 'bg-blue-200 mx-2 px-1' : ''}>{currentPage}</div>
+                        {currentPage < lastPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage + 1)}>{currentPage + 1}</div>}
+                        <a href="#doctors" onClick={() => currentPage < lastPage && setCurrentPage(currentPage + 1)} className="ml-3 cursor-pointer hover:scale-105 bg-blue-500 py-1 px-3 rounded-md">next</a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     )
 }
