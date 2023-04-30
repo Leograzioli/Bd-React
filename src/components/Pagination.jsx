@@ -1,0 +1,15 @@
+import React from 'react'
+
+export default function Pagination({ handleNextPage, handlePrevPage, currentPage, firstPage, lastPage }) {
+    return (
+        <div>
+            <div className="flex justify-center items-center mt-16 pb-5" >
+                <div onClick={() => handlePrevPage()} className="mr-3 cursor-pointer hover:scale-105 text-white bg-blue-500 py-1 px-3 rounded-md">previous</div>
+                {currentPage > firstPage && <div className="cursor-pointer hover:scale-125" onClick={() => handlePrevPage}>{currentPage - 1}</div>}
+                <div className={currentPage === currentPage ? 'bg-blue-200 mx-2 px-1' : ''}>{currentPage}</div>
+                {currentPage < lastPage && <div className="cursor-pointer hover:scale-125" onClick={() => handleNextPage()}>{currentPage + 1}</div>}
+                <div onClick={() => handleNextPage()} className="ml-3 cursor-pointer hover:scale-105 text-white bg-blue-500 py-1 px-3 rounded-md">next</div>
+            </div >
+        </div>
+    )
+}

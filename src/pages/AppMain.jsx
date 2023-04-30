@@ -6,6 +6,7 @@ import Cookies from "js-cookie"
 // components
 import AppJumbotron from "../components/AppJumbotron"
 import DoctorCard from "../components/DoctorCard"
+import Pagination from "../components/Pagination"
 
 
 function AppMain() {
@@ -60,6 +61,15 @@ function AppMain() {
         })
     }
 
+      //to handle click to next page
+  const handleNextPage = () => {
+    currentPage < lastPage && setCurrentPage(currentPage + 1)
+  }
+  //to handle click to previous page
+  const handlePrevPage = () => {
+    currentPage > firstPage && setCurrentPage(currentPage - 1)
+  }
+
     useEffect(() => {
         getDoc()
     }, [specializationValue, currentPage])
@@ -91,14 +101,7 @@ function AppMain() {
 
                     </div>
 
-                    {/* pagination */}
-                    <div className="flex items-center justify-center mt-16 pb-5">
-                        <a href="#doctors" onClick={() => currentPage > firstPage && setCurrentPage(currentPage - 1)} className="mr-3 cursor-pointer hover:scale-105 bg-blue-500 py-1 px-3 rounded-md">previous</a>
-                        {currentPage > firstPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage - 1)}>{currentPage - 1}</div>}
-                        <div className={currentPage === currentPage ? 'bg-blue-200 mx-2 px-1' : ''}>{currentPage}</div>
-                        {currentPage < lastPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage + 1)}>{currentPage + 1}</div>}
-                        <a href="#doctors" onClick={() => currentPage < lastPage && setCurrentPage(currentPage + 1)} className="ml-3 cursor-pointer hover:scale-105 bg-blue-500 py-1 px-3 rounded-md">next</a>
-                    </div>
+                    <Pagination handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} currentPage={currentPage} firstPage={firstPage} lastPage={lastPage} />
                 </div>
             </section>
         </div>

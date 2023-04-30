@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom"
 
 //components
 import DoctorCard from "../components/DoctorCard"
+import Pagination from "../components/Pagination"
 
 export default function AdvancedSearch() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -38,17 +39,22 @@ export default function AdvancedSearch() {
 
   //url params
   useEffect(() => {
-    setSearchParams(new URLSearchParams({ ...(specInput && { spec: specInput }), ...(voteInput && { vote: voteInput }) }))
-  }, [specInput, voteInput])
-
-  //fetch doctors data
-  useEffect(() => {
     getDoc()
+    setSearchParams(new URLSearchParams({ ...(specInput && { spec: specInput }), ...(voteInput && { vote: voteInput }) }))
   }, [specInput, voteInput, currentPage])
 
+  //to handle click to next page
+  const handleNextPage = () => {
+    currentPage < lastPage && setCurrentPage(currentPage + 1)
+  }
+  //to handle click to previous page
+  const handlePrevPage = () => {
+    currentPage > firstPage && setCurrentPage(currentPage - 1)
+  }
+
   return (
-    <div className="ms_vh" >
-      <div className="container mx-auto">
+    <div className="ms_vh " >
+      <div className="max-w-[1200px] /px-[8%] mx-auto">
         <div className="bg-gray-100 sm:my-16 p-10">
           <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
 
@@ -85,14 +91,8 @@ export default function AdvancedSearch() {
 
           </div>
 
-          {/* pagination */}
-          <div className="flex justify-center mt-16 pb-5">
-            <div onClick={() => currentPage > firstPage && setCurrentPage(currentPage - 1)} className="mr-3 cursor-pointer hover:scale-105">previous</div>
-            {currentPage > firstPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage - 1)}>{currentPage - 1}</div>}
-            <div className={currentPage === currentPage ? 'bg-blue-500 mx-2 px-1' : ''}>{currentPage}</div>
-            {currentPage < lastPage && <div className="cursor-pointer hover:scale-125" onClick={() => setCurrentPage(currentPage + 1)}>{currentPage + 1}</div>}
-            <div onClick={() => currentPage < lastPage && setCurrentPage(currentPage + 1)} className="ml-3 cursor-pointer hover:scale-105">next</div>
-          </div>
+          <Pagination handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} currentPage={currentPage} firstPage={firstPage} lastPage={lastPage} />
+
         </div>
       </div>
     </div>
