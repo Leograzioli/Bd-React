@@ -39,7 +39,7 @@ export default function DoctorProfile() {
             {/* to handdle possible delay on fetching data  */}
             {isLoading && <div className="flex justify-center items-center h-[calc(100vh-80px-128px)]">
                 <div className="text-2xl font-semibold flex items-baseline gap-x-2">
-                    <svg class="animate-spin border-t-2 rounded-full border-2 border-black border-t-white w-4 h-4 " />
+                    <svg className="animate-spin border-t-2 rounded-full border-2 border-black border-t-white w-4 h-4 " />
                     <div>Loading...</div>
                 </div>
             </div>}
