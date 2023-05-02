@@ -3,10 +3,30 @@ import Cookies from "js-cookie"
 import { Link, useNavigate } from "react-router-dom"
 
 import logo from '../assets/logo.jpg'
+import { useEffect, useRef, useState } from "react"
 
 export default function AppHeader() {
   const token = Cookies.get('token')
+  const user = Cookies.get('userName')
+
   const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef()
+
+  useEffect(() => {
+    const handleMenu = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleMenu)
+
+    return () => {
+      document.removeEventListener("mousedown", handleMenu)
+    }
+    
+  })
+
 
   //logout function. remove the token and redirect to login page
   const handleClick = (e) => {
@@ -20,7 +40,11 @@ export default function AppHeader() {
       if (resp.data.status) {
 
         Cookies.remove('token')
-        navigate('/login')
+        Cookies.remove('userName')
+
+        setTimeout(() => {
+          navigate('/login')
+        }, 200);
 
       }
     })
@@ -40,7 +64,28 @@ export default function AppHeader() {
             <Link className="ml-3" to='/about-us'>about-us</Link>
             {!token && <Link className="ml-3" to='/login'>login</Link>}
             {!token && <Link className="ml-3" to='/register'>register</Link>}
-            {token && <a className="ml-3" href="" onClick={ (e) => {handleClick(e)} }>Logout</a>}
+
+            <div className="menu-container" ref={menuRef}>
+              {token &&
+                <div onClick={() => { setIsOpen(!isOpen) }} className="ml-3 relative cursor-pointer">
+                  <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up"></i> : <i className="fa-solid fa-chevron-down"></i>}</div>
+                  <div className={isOpen ? ' text-center absolute translate-x-[-23px] block mt-4 bg-blue-200 px-6 pb-4 border-b-2 border-white' : 'hidden'} >
+                    <div>
+                      <Link to={'/'}>home</Link>
+                    </div>
+                    <div className="mt-1">
+                      <Link to={'/'}>dashboard</Link>
+                    </div>
+                    <div className="mt-1">
+                      <Link to={'/'}>profile</Link>
+                    </div>
+                    <div className="mt-1">
+                      <a onClick={(e) => { handleClick(e) }}>Logout</a>
+                    </div>
+                  </div>
+
+                </div>}
+            </div>
 
           </div>
         </nav>

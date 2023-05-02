@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 
 export default function AppLogin() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('mariorossi@gmail.com')
+    const [password, setPassword] = useState('123123123')
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -16,10 +16,11 @@ export default function AppLogin() {
             password
 
         }).then(resp => {
-
+            console.log(resp.data);
             if (resp.data.status) {
                 navigate('/')
                 Cookies.set('token', resp.data.token, { expires: 1 / 24 })
+                Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 } )
             }
         })
     }
@@ -35,13 +36,13 @@ export default function AppLogin() {
                             <div className="mt-3 mx-auto w-full">
                                 <label htmlFor="">
                                     <div className="text-xl">Email</div>
-                                    <input onChange={(e) => setEmail(e.target.value)} type="text" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input onChange={(e) => setEmail(e.target.value)} value={'mariorossi@gmail.com'} type="text" className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>
                             </div>
                             <div className="mt-3 mx-auto w-full">
                                 <label htmlFor="">
                                     <div className="text-xl">Password</div>
-                                    <input onChange={(e) => setPassword(e.target.value)} type="password" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input onChange={(e) => setPassword(e.target.value)} type="password" value={"123123123"} className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>
                             </div>
 

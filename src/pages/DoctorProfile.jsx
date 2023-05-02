@@ -11,7 +11,9 @@ export default function DoctorProfile() {
     const [isLoading, setIsLoading] = useState(false)
 
     //to fetch sigle doctor 
-    const getDoc = () => {
+
+
+    useEffect(() => {
         setIsLoading(true)
         const params = {
             id: id
@@ -27,10 +29,6 @@ export default function DoctorProfile() {
             .finally(() => {
                 setIsLoading(false)
             })
-    }
-
-    useEffect(() => {
-        getDoc()
     }, [])
 
     return (

@@ -27,8 +27,8 @@ function App() {
         <Routes>
           <Route path='/' element={<AppMain />} />
           <Route path='/about-us' element={<AboutUs />} />
-          <Route path='/login' element={token? <Navigate to={-1}/> : <AppLogin />} />
-          <Route path='/register' element={token? <Navigate to={-1}/> : <AppRegister />} />
+          <Route path='/login' element={token? <Navigate to={'/'}/> : <AppLogin />} />
+          <Route path='/register' element={token? <Navigate to={'/'}/> : <AppRegister />} />
           <Route path='/search' element={<AdvancedSearch />} />
           <Route path='/profile/:id' element={<DoctorProfile />} />
         </Routes>
