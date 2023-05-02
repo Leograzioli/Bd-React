@@ -69,17 +69,25 @@ export default function AppHeader() {
               {token &&
                 <div onClick={() => { setIsOpen(!isOpen) }} className="ml-3 relative cursor-pointer">
                   <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up"></i> : <i className="fa-solid fa-chevron-down"></i>}</div>
-                  <div className={isOpen ? ' text-center absolute translate-x-[-23px] block mt-4 bg-blue-200 px-6 pb-4 border-b-2 border-white' : 'hidden'} >
-                    <div>
-                      <Link to={'/'}>home</Link>
+                  <div className={isOpen ? 'capitalize text-center font-normal absolute translate-x-[-5px] block mt-4 bg-blue-200 px-6 pb-4 border-b-2  border-white z-10' : 'hidden'} >
+                    
+                    <div className="mt-1 text-sm">
+                      <Link to={'/dashboard'}>Dashboard</Link>
                     </div>
-                    <div className="mt-1">
-                      <Link to={'/'}>dashboard</Link>
+
+                    <div className="text-sm mt-2">
+                      <Link to={'/dashboard/profile'}>Profile</Link>
                     </div>
-                    <div className="mt-1">
-                      <Link to={'/'}>profile</Link>
+
+                    <div className="text-sm mt-2">
+                      <Link to={'/dashboard/messages'}>messages</Link>
                     </div>
-                    <div className="mt-1">
+
+                    <div className="text-sm mt-2">
+                      <Link to={'/dashboard/feedback'}>feedback</Link>
+                    </div>
+
+                    <div className="mt-1 text-sm">
                       <a onClick={(e) => { handleClick(e) }}>Logout</a>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, BrowserRouter, Routes, useNavigate, Navigate} from 'react-router-dom'
+import { Route, BrowserRouter, Routes, useLocation, Navigate } from 'react-router-dom'
 
 //components
 import AppHeader from './components/AppHeader'
@@ -14,9 +14,10 @@ import DoctorProfile from './pages/DoctorProfile'
 import AppLogin from './pages/auth/AppLogin'
 import AppRegister from './pages/auth/AppRegister'
 import Cookies from 'js-cookie'
+import Dashboard from './pages/dashboard/DashboardLayout'
+
 
 function App() {
-
   const token = Cookies.get('token')
 
   return (
@@ -27,8 +28,9 @@ function App() {
         <Routes>
           <Route path='/' element={<AppMain />} />
           <Route path='/about-us' element={<AboutUs />} />
-          <Route path='/login' element={token? <Navigate to={'/'}/> : <AppLogin />} />
-          <Route path='/register' element={token? <Navigate to={'/'}/> : <AppRegister />} />
+          <Route path='/dashboard/*' element={<Dashboard />} />
+          <Route path='/login' element={token ? <Navigate to={'/'} /> : <AppLogin />} />
+          <Route path='/register' element={token ? <Navigate to={'/'} /> : <AppRegister />} />
           <Route path='/search' element={<AdvancedSearch />} />
           <Route path='/profile/:id' element={<DoctorProfile />} />
         </Routes>
