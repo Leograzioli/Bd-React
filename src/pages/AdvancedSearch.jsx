@@ -83,7 +83,7 @@ export default function AdvancedSearch() {
           </div>
 
           {/* grid  */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-x-8 lg:gap-y-16 mt-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12 mt-16">
 
             {doctorsList.length > 0 && doctorsList.map((doctor) => {
               return <DoctorCard key={doctor.id} doctor={doctor} />

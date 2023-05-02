@@ -2,6 +2,8 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import { Link, useNavigate } from "react-router-dom"
 
+import logo from '../assets/logo.jpg'
+
 export default function AppHeader() {
   const token = Cookies.get('token')
   const navigate = useNavigate()
@@ -30,7 +32,7 @@ export default function AppHeader() {
         <nav className="h-20 flex ">
           <div className="left-nav w-1/4 flex items-center">
             <div className="logo">
-              <img className="w-16" src="src/assets/logo.jpg" alt="" />
+              <img className="w-16" src={logo} alt="" />
             </div>
           </div>
           <div className="right-nav w-3/4  flex justify-end items-center font-semibold uppercase">

@@ -1,3 +1,4 @@
+import logo from '../assets/logo.jpg'
 
 export default function AppFooter() {
     return (
@@ -8,7 +9,7 @@ export default function AppFooter() {
                 <div className="py-8 text-white grid sm:grid-cols-2 lg:grid-cols-4 gap-16 pb-16 border-b-2 text-center">
                     <div className="font-semibold sm:border-r-2 sm:pr-4 py-5"> 
                         <div className="flex">
-                            <img className="w-1/3 mr-3" src="src/assets/logo.jpg" alt="" />
+                            <img className="w-1/3 mr-3" src={logo} alt="logo" />
                             <p className="text-md self-center underline">BDoctors.com</p>
                         </div>
                         <p className="mt-5">2019 - 2023 <span className="text-gray-400">New York Street</span></p>

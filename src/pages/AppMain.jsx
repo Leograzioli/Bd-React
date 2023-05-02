@@ -82,7 +82,7 @@ function AppMain() {
 
                     {/* section title  */}
                     <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
-                    <div className="my-16 flex justify-center">
+                    <div className="mt-16 flex justify-center">
                         <select onChange={(e) => setSpecializationValue(e.target.value)} className="w-1/2 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
                             <option value="">Select a Specialization</option>
                             {specializations && specializations.map((specialization) => {
@@ -93,7 +93,7 @@ function AppMain() {
                     </div>
 
                     {/* grid  */}
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12 mt-16">
 
                         {doctorsList && doctorsList.map((doctor) => {
                             return <DoctorCard key={doctor.id} doctor={doctor} />
