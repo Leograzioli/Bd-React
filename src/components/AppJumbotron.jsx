@@ -4,9 +4,9 @@ export default function AppJumbotron() {
     return (
         <div className="bg-blue-200">
 
-            <div className="container mx-auto max-w-[1200px]">
+            <div className=" mx-auto max-w-[1200px]">
                 <div className="flex">
-                    <div className="w-full md:w-1/2 self-center px-5 pb-10">
+                    <div className="w-full md:w-1/2 self-center px-4 pb-10">
                         <p className="text-2xl text-gray-500 font-semibold">We care about you..</p>
                         <h2 className="text-4xl mt-10 text-slate-900 font-semibold">THE BEST <br /> ONLINE <br /> SUPPORT FOR YOUR HEALTH</h2>
                         <p className="text-xl text-gray-500 mt-5 ">Meet our doctors</p>

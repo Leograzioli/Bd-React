@@ -28,7 +28,7 @@ export default function AppHeader() {
 
   return (
     <div className="bg-blue-200">
-      <header className="container mx-auto px-4 sm:px-0 max-w-[1200px]">
+      <header className="container mx-auto px-4 max-w-[1200px]">
         <nav className="h-20 flex ">
           <div className="left-nav w-1/4 flex items-center">
             <div className="logo">
