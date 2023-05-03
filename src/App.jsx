@@ -15,6 +15,7 @@ import AppLogin from './pages/auth/AppLogin'
 import AppRegister from './pages/auth/AppRegister'
 import Cookies from 'js-cookie'
 import Dashboard from './pages/dashboard/DashboardLayout'
+import ProtectedRoute from './utilities/ProtectedRoute'
 
 
 function App() {
@@ -28,11 +29,14 @@ function App() {
         <Routes>
           <Route path='/' element={<AppMain />} />
           <Route path='/about-us' element={<AboutUs />} />
-          <Route path='/dashboard/*' element={<Dashboard />} />
           <Route path='/login' element={token ? <Navigate to={'/'} /> : <AppLogin />} />
           <Route path='/register' element={token ? <Navigate to={'/'} /> : <AppRegister />} />
           <Route path='/search' element={<AdvancedSearch />} />
-          <Route path='/profile/:id' element={<DoctorProfile />} />
+          <Route path='/doctor/:id' element={<DoctorProfile />} />
+
+          <Route element={<ProtectedRoute />} >
+            <Route path='/dashboard/*' element={<Dashboard />} />
+          </Route>
         </Routes>
         <AppFooter />
       </BrowserRouter>

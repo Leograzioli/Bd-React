@@ -46,7 +46,7 @@ export default function DoctorProfile() {
                         {/* profile picture */}
                         <img className="min-w-[320px] min-h-[320px] w-[320px] rounded-full object-cover" src={doc} alt="" />
 
-                        <div className="mt-10 text-lg pr-6">
+                        <div className="mt-10 text-lg px-12">
                             <p className="font-semibold"><i className="fa-solid fa-envelope"></i> {doctor.email}</p>
                             {doctor.user_detail && <p className="mt-4 font-semibold "><i className="fa-solid fa-phone"></i> {doctor.user_detail.phone}</p>}
                             {doctor.user_detail && <p className="mt-4 font-semibold "><i className="fa-solid fa-syringe"></i> {doctor.user_detail.performance}</p>}
@@ -91,17 +91,19 @@ export default function DoctorProfile() {
                             <div className="font-semibold text-2xl mt-4">Feedback:</div>
                             {doctor.feedback && doctor.feedback.map(feedback => {
                                 return (
-                                    <div key={feedback.id} className="mt-4 border-2 rounded-md border-white p-2 ">
-                                        <div className="flex items-center">
+                                    <div key={feedback.id} className="mt-4 border-2 rounded-md border-white p-4 ">
+                                        <div className="flex items-center justify-between">
                                             <h2 className="text-lg font-semibold mr-2">{feedback.name}</h2>
-                                            {Array.from({ length: 5 }, (_, i) => (
-                                                <i
-                                                    key={i}
-                                                    className={`fa-star ${i < Math.trunc(feedback.vote) ? 'fa-solid' : 'fa-regular'}`}
-                                                ></i>
-                                            ))}
+                                            <div>
+                                                {Array.from({ length: 5 }, (_, i) => (
+                                                    <i
+                                                        key={i}
+                                                        className={`fa-star ${i < Math.trunc(feedback.vote) ? 'fa-solid' : 'fa-regular'}`}
+                                                    ></i>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <p className="mt-1">{feedback.feedback_description}</p>
+                                        <p className="mt-2">{feedback.feedback_description}</p>
                                     </div>
                                 )
                             })}

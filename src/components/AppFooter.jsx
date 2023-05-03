@@ -3,7 +3,6 @@ import logo from '../assets/logo.jpg'
 
 export default function AppFooter() {
     let location = useLocation()
-    console.log(location.pathname);
 
     return (
         <>

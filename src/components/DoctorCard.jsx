@@ -35,7 +35,7 @@ export default function DoctorCard({ doctor }) {
                             ></i>
                         ))}
                     </p>
-                    <Link to={`/profile/${doctor.id}`}>Vedi profile</Link>
+                    <Link to={`/doctor/${doctor.id}`}>Vedi profile</Link>
                 </div>
             </div>
         </div>
