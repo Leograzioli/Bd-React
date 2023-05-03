@@ -8,7 +8,7 @@ import Dashboard from "./Dashboard"
 export default function DashboardLayout() {
 
     return (
-        <div className="absolute top-20 left-0 right-0 bottom-0 bg-white">
+        <div className="h-[calc(100vh-80px)] bg-white">
             <div className="flex">
                 <div className="w-[260px] border-t border-blue-300 h-[calc(100vh-80px)] bg-blue-200 px-8 py-12">
                     <ul className="uppercase font-semibold flex flex-col gap-y-2">
