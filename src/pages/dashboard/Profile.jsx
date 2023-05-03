@@ -1,6 +1,11 @@
 
 export default function Profile() {
   return (
-    <div>Profile</div>
+    <>
+      <section id="profile" className="mx-20 mt-16">
+        <h2 className="text-3xl font-semibold">Profile</h2>
+        <p>ciao</p>
+      </section>
+    </>
   )
 }

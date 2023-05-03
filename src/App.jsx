@@ -16,10 +16,11 @@ import AppRegister from './pages/auth/AppRegister'
 import Cookies from 'js-cookie'
 import Dashboard from './pages/dashboard/DashboardLayout'
 import ProtectedRoute from './utilities/ProtectedRoute'
+import { useState } from 'react'
 
 
 function App() {
-  const token = Cookies.get('token')
+  const [token] = useState(Cookies.get('token'))
 
   return (
     <div className='App'>

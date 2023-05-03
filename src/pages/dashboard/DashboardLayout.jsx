@@ -1,9 +1,10 @@
 import { Link, Route, Routes } from "react-router-dom"
 
 import Profile from "./Profile"
-import Messages from "./messages"
+import Messages from "./Messages"
 import Feedback from "./Feedback"
 import Dashboard from "./Dashboard"
+import SingleMessage from "./SingleMessage"
 
 export default function DashboardLayout() {
 
@@ -41,6 +42,7 @@ export default function DashboardLayout() {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/messages" element={<Messages  />} />
                         <Route path="/feedback" element={<Feedback />} />
+                        <Route path="/messages/:id" element={<SingleMessage />} />
                     </Routes>
 
                 </div>

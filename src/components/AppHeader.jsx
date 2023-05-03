@@ -39,10 +39,10 @@ export default function AppHeader() {
       console.log(resp);
       if (resp.data.status) {
 
-        Cookies.remove('token')
         Cookies.remove('userName')
-
+        
         setTimeout(() => {
+          Cookies.remove('token')
           navigate('/login')
         }, 200);
 
