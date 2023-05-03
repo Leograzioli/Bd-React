@@ -25,9 +25,9 @@ export default function SingleMessage() {
                 <p className='mt-2 mr-2'>{message.accountholder}</p>
                 <p className='mt-2'>{new Date(message.created_at).toLocaleDateString()}</p>
             </div>
-            <p className='mt-2 w-4/4 md:w-3/4'>{message.message}</p>
-            <div className='flex justify-end mt-4'>
-                <div onClick={() => { window.open(`mailto:${message.accountholder}`) }} className='cursor-pointer w-fit bg-blue-200 rounded-md px-4 py-2 '> rispondi</div>
+            <p className='mt-2 w-full md:w-3/4'>{message.message}</p>
+            <div className='inline-flex w-full md:w-3/4 justify-end mt-4'>
+                <div onClick={() => { window.open(`mailto:${message.accountholder}`) }} className='cursor-pointer w-fit bg-blue-200 rounded-md px-4 py-2 font-semibold'> rispondi <i className='fa-solid fa-envelope'></i></div>
             </div>
 
 

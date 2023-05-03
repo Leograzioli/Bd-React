@@ -20,9 +20,10 @@ export default function AppRegister() {
             password,
             password_confirmation
         }).then(resp => {
-
+            console.log(resp.data);
             if (resp.data.status) {
                 Cookies.set('token', resp.data.token, { expires: 1 / 24 })
+                Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 } )
                 navigate('/')
             }
         })

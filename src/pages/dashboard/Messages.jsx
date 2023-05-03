@@ -14,7 +14,6 @@ export default function Messages() {
 
     axios.get('http://127.0.0.1:8000/api/auth/messages', { headers }).then(resp => {
       setMessages(resp.data.messages);
-      console.log(resp.data.messages);
     })
   }, [])
 
