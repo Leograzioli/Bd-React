@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function SingleMessage() {
     const { id } = useParams()
@@ -26,7 +26,8 @@ export default function SingleMessage() {
                 <p className='mt-2'>{new Date(message.created_at).toLocaleDateString()}</p>
             </div>
             <p className='mt-2 w-full md:w-3/4'>{message.message}</p>
-            <div className='inline-flex w-full md:w-3/4 justify-end mt-4'>
+            <div className='inline-flex w-full md:w-3/4 justify-between mt-4'>
+                <Link className='rounded-md px-4 py-2 font-semibold bg-blue-200' to={-1}>Back</Link>
                 <div onClick={() => { window.open(`mailto:${message.accountholder}`) }} className='cursor-pointer w-fit bg-blue-200 rounded-md px-4 py-2 font-semibold'> rispondi <i className='fa-solid fa-envelope'></i></div>
             </div>
 

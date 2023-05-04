@@ -36,7 +36,7 @@ export default function DashboardLayout() {
                     </ul>
                 </div>
 
-                <div className=" w-full h-[calc(100vh-80px)]">
+                <div className=" w-full h-[calc(100vh-80px)] overflow-hidden">
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/profile" element={<Profile />} />
