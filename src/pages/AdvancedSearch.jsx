@@ -15,9 +15,13 @@ export default function AdvancedSearch() {
   const [specializations, setSpecializations] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const firstPage = 1
 
   const getDoc = () => {
+
+    setIsLoading(true)
+
     axios.get('http://127.0.0.1:8000/api/guest/doctorslist', {
       params: {
         page: currentPage,
@@ -34,6 +38,10 @@ export default function AdvancedSearch() {
         setCurrentPage(resp.data.doctors.current_page)
         setLastPage(resp.data.doctors.last_page)
         setSpecializations(resp.data.specializations)
+      }).catch(err => {
+        console.log(err);
+      }).finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -45,11 +53,15 @@ export default function AdvancedSearch() {
 
   //to handle click to next page
   const handleNextPage = () => {
-    currentPage < lastPage && setCurrentPage(currentPage + 1)
+    if (!isLoading) {
+      currentPage < lastPage && setCurrentPage(currentPage + 1)      
+    }
   }
   //to handle click to previous page
   const handlePrevPage = () => {
-    currentPage > firstPage && setCurrentPage(currentPage - 1)
+    if (!isLoading) {
+      currentPage > firstPage && setCurrentPage(currentPage - 1)      
+    }
   }
 
   return (

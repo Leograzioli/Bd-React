@@ -13,6 +13,7 @@ function AppMain() {
 
     const [doctorsList, setDoctorsList] = useState([])
     const [specializations, setSpecializations] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const [specializationValue, setSpecializationValue] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
     const [lastPage, setLastPage] = useState(null)
@@ -20,6 +21,8 @@ function AppMain() {
     const navigate = useNavigate()
 
     const getDoc = () => {
+
+        setIsLoading(true)
 
         axios.get('http://127.0.0.1:8000/api/guest/doctorslist', {
             params: {
@@ -58,17 +61,24 @@ function AppMain() {
                 console.log('Error', error.message);
             }
             console.log(error.config);
+        }).finally(() => {
+            setIsLoading(false)
         })
     }
 
-      //to handle click to next page
-  const handleNextPage = () => {
-    currentPage < lastPage && setCurrentPage(currentPage + 1)
-  }
-  //to handle click to previous page
-  const handlePrevPage = () => {
-    currentPage > firstPage && setCurrentPage(currentPage - 1)
-  }
+    //to handle click to next page
+    const handleNextPage = () => {
+        if (!isLoading) {   
+            currentPage < lastPage && setCurrentPage( currentPage + 1 )
+        }
+    }
+    //to handle click to previous page
+    const handlePrevPage = () => {
+
+        if (!isLoading) {
+            currentPage > firstPage && setCurrentPage(currentPage - 1)
+        }
+    }
 
     useEffect(() => {
         getDoc()
