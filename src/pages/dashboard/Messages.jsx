@@ -116,7 +116,7 @@ export default function Messages() {
                     })}
                   </tbody>
                 </table>
-                <div className="text-end text-sm">pages: {messages.length}</div>
+                <div className="text-end text-sm">pages: {lastPage}</div>
 
                 <Pagination handleNextPage={handleNextPage} handlePrevPage={handlePrevPage} currentPage={currentPage} firstPage={firstPage} lastPage={lastPage} />
 

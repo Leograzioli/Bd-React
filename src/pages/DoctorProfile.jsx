@@ -42,8 +42,10 @@ export default function DoctorProfile() {
             user_id: doctor.id
         }).then(resp => {
             console.log(resp.data);
+
         }).catch(err => {
             console.log(err);
+
         }).finally(() => {
             setName('')
             setAccountHolder('')
