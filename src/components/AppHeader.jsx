@@ -32,7 +32,6 @@ export default function AppHeader() {
 
   })
 
-
   //logout function. remove the token and redirect to login page
   const handleClick = (e) => {
     e.preventDefault()
@@ -57,43 +56,51 @@ export default function AppHeader() {
 
   return (
     <>
-      {!location.pathname.includes('/dashboard') && <div className="bg-blue-200">
-        <header className="container mx-auto px-4 max-w-[1200px]">
-          <nav className="h-20 flex ">
+      {!location.pathname.includes('/dashboard') && <div className="bg-blue-200 border-b">
+        <header className="mx-auto px-4 max-w-[1200px]">
+          <nav className="h-[59px] flex ">
+
             <div className="left-nav w-1/4 flex items-center">
               <div className="logo">
                 <img className="w-16" src={logo} alt="" />
               </div>
             </div>
-            <div className="right-nav w-3/4  flex justify-end items-center font-semibold uppercase">
+
+            <div className="w-3/4  flex justify-end items-center font-semibold capitalize">
               <Link className="ml-3" to='/'>home</Link>
               <Link className="ml-3" to='/about-us'>about-us</Link>
               {!token && <Link className="ml-3" to='/login'>login</Link>}
               {!token && <Link className="ml-3" to='/register'>register</Link>}
 
+              {/* drop down menu */}
               <div className="menu-container" ref={menuRef}>
                 {token &&
                   <div onClick={() => { setIsOpen(!isOpen) }} className="ml-3 relative cursor-pointer">
-                    <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up"></i> : <i className="fa-solid fa-chevron-down"></i>}</div>
-                    <div className={isOpen ? 'capitalize text-center font-normal absolute translate-x-[-5px] block mt-4 bg-blue-200 px-6 pb-4 border-b-2  border-white z-10' : 'hidden'} >
+                    <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up fa-xs"></i> : <i className="fa-solid fa-chevron-down fa-xs"></i>}</div>
+                    <div className={isOpen ? 'w-[130px] capitalize font-semibold absolute top-8 right-0 block rounded border border-gray-300 bg-white' : 'hidden'} >
 
-                      <div className="mt-1 text-sm">
-                        <Link to={'/dashboard'}>Dashboard</Link>
-                      </div>
+                      <Link to={'/dashboard'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                        <i className="fa-solid fa-table-columns fa-xs mr-2"></i>
+                        <div>Dashboard</div>
+                      </Link>
 
-                      <div className="text-sm mt-2">
-                        <Link to={'/dashboard/profile'}>Profile</Link>
-                      </div>
+                      <Link to={'/dashboard/profile'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                        <i className="fa-solid fa-user fa-xs mr-2"> </i>
+                        <div>Profile</div>
+                      </Link>
 
-                      <div className="text-sm mt-2">
-                        <Link to={'/dashboard/messages'}>messages</Link>
-                      </div>
+                      <Link to={'/dashboard/messages'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                        <i className="fa-solid fa-envelope fa-xs mr-2"></i>
+                        <div>messages</div>
+                      </Link>
 
-                      <div className="text-sm mt-2">
-                        <Link to={'/dashboard/feedback'}>feedback</Link>
-                      </div>
+                      <Link to={'/dashboard/feedback'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                        <i className="fa-solid fa-pencil fa-xs mr-2"></i>
+                        <div>feedback</div>
+                      </Link>
 
-                      <div className="mt-1 text-sm">
+                      <div className="text-sm py-2 hover:bg-blue-50 px-4">
+                        <i className="fa-solid fa-arrow-right-from-bracket fa-xs mr-2"></i>
                         <a onClick={(e) => { handleClick(e) }}>Logout</a>
                       </div>
                     </div>

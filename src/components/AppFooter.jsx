@@ -6,7 +6,7 @@ export default function AppFooter() {
 
     return (
         <>
-            {!location.pathname.includes('/dashboard') && <footer className="bg-blue-900 py-16">
+            {!location.pathname.includes('/dashboard', "/login", "/register")  && <footer className="bg-blue-900 py-16">
                 <div className="container px-4 mx-auto max-w-[1200px]">
 
                     {/* top  */}

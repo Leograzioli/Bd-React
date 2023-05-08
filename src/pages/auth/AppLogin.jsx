@@ -28,7 +28,7 @@ export default function AppLogin() {
     return (
         <>
             <section>
-                <div className="container mx-auto h-[calc(100vh-80px)] flex justify-center items-center">
+                <div className="container mx-auto h-[calc(100vh-60px)] flex justify-center items-center">
 
                     <div className="w-[400px] bg-blue-200 rounded-md">
 

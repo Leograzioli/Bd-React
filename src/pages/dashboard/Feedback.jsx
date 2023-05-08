@@ -5,8 +5,7 @@ import Pagination from "../../components/Pagination"
 import { Link } from "react-router-dom"
 
 export default function Feedback() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [feedbackId, setFeedbackId] = useState(false)
+
   const [isLoading, setIsLoading] = useState(false)
   const [feedback, setFeedback] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -55,25 +54,6 @@ export default function Feedback() {
     }
   }
 
-  // to delete the clicked message.
-  const handleDelete = (e, id) => {
-    e.preventDefault()
-
-    const headers = {
-      Authorization: `Bearer ${token}`
-    }
-
-    axios.delete(`http://127.0.0.1:8000/api/auth/feedback/delete/${id}`, { headers }).then(resp => {
-      console.log(resp.data);
-    }).catch(err => {
-      console.log(err);
-    }).finally(() => {
-      setIsOpen(false)
-      setFeedbackId(null)
-      getFeedback()
-    })
-  }
-
   useEffect(() => {
     getFeedback()
   }, [])
@@ -109,8 +89,7 @@ export default function Feedback() {
                           <td className="whitespace-nowrap hidden xl:block px-6 py-4">{feed.feedback_description.slice(0, 40)} ...</td>
                           <td className="whitespace-nowrap px-6 py-4">{new Date(feed.created_at).toLocaleDateString()}</td>
                           <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg">
-                            <Link to={`${feed.id}`}> <i className="fa-solid fa-eye text-blue-400"></i></Link>
-                            <div onClick={(e) => { setIsOpen(true), setFeedbackId(feed.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
+                            <Link to={`${feed.id}`}> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></Link>
                           </td>
                         </tr>
                       )
@@ -126,18 +105,6 @@ export default function Feedback() {
           </div>
         </div>
 
-        {/* modal */}
-        {isOpen && <div className="absolute top-0 right-0 left-0 bottom-0 bg-[#000000a6]">
-          <div className="flex h-screen justify-center items-center">
-            <div className="w-[350px] h-[200px] bg-blue-200 px-4 py-12 rounded">
-              <h2 className="text-2xl text-center font-semibold">You really want to delete {feedbackId}?</h2>
-              <div className="flex justify-center gap-x-2 mt-8">
-                <div onClick={() => { setIsOpen(false) }} className="bg-red-500 rounded px-3 py-1 cursor-pointer text-white font-semibold">no</div>
-                <a onClick={(e) => { handleDelete(e, feedbackId) }} className="bg-green-500 rounded px-3 py-1 text-white cursor-pointer font-semibold">yes</a>
-              </div>
-            </div>
-          </div>
-        </div>}
       </section>
     </>
   )

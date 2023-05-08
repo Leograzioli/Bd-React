@@ -107,8 +107,8 @@ export default function Messages() {
                           <td className="whitespace-nowrap px-6 py-4">{message.accountholder}</td>
                           <td className="whitespace-nowrap hidden xl:block px-6 py-4">{message.message.slice(0, 40)} ...</td>
                           <td className="whitespace-nowrap px-6 py-4">{new Date(message.created_at).toLocaleDateString()}</td>
-                          <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg">
-                            <Link to={`${message.id}`}> <i className="fa-solid fa-eye text-blue-400"></i></Link>
+                          <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg ">
+                            <Link to={`${message.id}`}> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></Link>
                             <div onClick={(e) => { setIsOpen(true), setMessageId(message.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
                           </td>
                         </tr>
