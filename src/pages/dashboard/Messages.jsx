@@ -1,7 +1,7 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Pagination from "../../components/Pagination"
 
 export default function Messages() {
@@ -11,6 +11,7 @@ export default function Messages() {
   const [isLoading, setIsLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [lastPage, setLastPage] = useState(null)
+  const navigate = useNavigate()
   const token = Cookies.get('token')
   const firstPage = 1
 
@@ -69,6 +70,7 @@ export default function Messages() {
       currentPage < lastPage && setCurrentPage(currentPage + 1)
     }
   }
+
   //to handle click to previous page
   const handlePrevPage = () => {
     if (!isLoading) {
@@ -76,10 +78,20 @@ export default function Messages() {
     }
   }
 
+  //to mark message as read 
+  const handleIsRead = (id) => {
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    }
+
+    axios.put('http://127.0.0.1:8000/api/auth/message/edit/' + id,{}, { headers})
+    navigate("/dashboard/messages/" + id)
+  }
 
   return (
     <>
-      <section id="messages" className="mx-8 md:mx-20 mt-16">
+      <section id="messages" className="mx-8 mt-16">
 
         <h2 className="text-3xl font-semibold">Messages</h2>
 
@@ -102,14 +114,14 @@ export default function Messages() {
                     {messages && messages.map((message) => {
                       return (
                         <tr key={message.id}
-                          className="border-b even:bg-blue-50 hover:bg-blue-300 transition-all dark:border-neutral-500 dark:bg-neutral-700">
+                          className={`${"border-b hover:bg-blue-300 transition-all dark:border-neutral-500 dark:bg-neutral-700"} ${!message.is_read && 'bg-blue-100 border-b border-white font-semibold'}`}>
                           <td className="whitespace-nowrap px-6 py-4 font-semibold">{message.name}</td>
                           <td className="whitespace-nowrap px-6 py-4">{message.accountholder}</td>
                           <td className="whitespace-nowrap hidden xl:block px-6 py-4">{message.message.slice(0, 40)} ...</td>
                           <td className="whitespace-nowrap px-6 py-4">{new Date(message.created_at).toLocaleDateString()}</td>
                           <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg ">
-                            <Link to={`${message.id}`}> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></Link>
-                            <div onClick={(e) => { setIsOpen(true), setMessageId(message.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
+                            <div onClick={ () => {handleIsRead(message.id)} } className="cursor-pointer"> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></div>
+                            <div onClick={ () => { setIsOpen(true), setMessageId(message.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
                           </td>
                         </tr>
                       )

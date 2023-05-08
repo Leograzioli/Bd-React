@@ -155,7 +155,7 @@ export default function DashboardLayout() {
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/profile" element={<Profile />} />
-                        <Route path="/messages" element={<Messages />} />
+                        <Route path="/messages" element={<Messages  />} />
                         <Route path="/feedback" element={<Feedback />} />
                         <Route path="/messages/:id" element={<SingleMessage />} />
                     </Routes>
