@@ -88,7 +88,7 @@ function AppMain() {
         <div>
             <AppJumbotron />
             <section id="doctors" className="container max-w-[1200px] mx-auto">
-                <div className="bg-gray-100 sm:my-16 p-10 ">
+                <div className="bg-gray-50 border border-gray-200 rounded sm:my-16 p-10 ">
 
                     {/* section title  */}
                     <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>

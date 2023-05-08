@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 export default function DoctorCard({ doctor }) {
     return (
-        <div>
+        <>
             {/* card  */}
-            <div className="bg-white rounded-tl-3xl rounded-br-3xl p-4 max-w-[350px]">
+            <div className="bg-white border boder-gray-200 rounded-tl-xl rounded-br-xl p-4 max-w-[330px]">
 
                 {/* image  */}
                 <div>
-                    <img className="rounded-tl-3xl rounded-br-3xl" src="src/assets/doc-2.jpg" alt="" />
+                    <img className="rounded-tl-xl rounded-br-xl" src="src/assets/doc-2.jpg" alt="" />
                 </div>
 
                 {/* contact info  */}
@@ -38,7 +38,7 @@ export default function DoctorCard({ doctor }) {
                     <Link to={`/doctor/${doctor.id}`}>Vedi profile</Link>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

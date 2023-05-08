@@ -18,7 +18,7 @@ export default function AppLogin() {
         }).then(resp => {
             console.log(resp.data);
             if (resp.data.status) {
-                navigate('/')
+                navigate('/dashboard')
                 Cookies.set('token', resp.data.token, { expires: 1 / 24 })
                 Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 } )
             }

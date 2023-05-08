@@ -63,7 +63,7 @@ export default function DoctorProfile() {
                 <div className="flex gap-x-6">
 
                     {/* left card*/}
-                    <div className=" bg-gray-100 w-1/3 rounded-md py-10 px-6 flex flex-col items-center">
+                    <div className=" bg-gray-50 border border-gray-200 w-1/3 rounded-md py-10 px-6 flex flex-col items-center">
 
                         {/* profile picture */}
                         <img className="min-w-[320px] min-h-[300px] w-[320px] rounded-full object-cover" src={doc} alt="" />
@@ -80,7 +80,7 @@ export default function DoctorProfile() {
                     <div className="w-2/3">
 
                         {/* details */}
-                        <div className="bg-gray-100  rounded-md p-10">
+                        <div className="bg-gray-50  border border-gray-200 rounded-md p-10">
 
                             {/* full name  and specializations*/}
                             <h2 className="text-5xl text-center font-bold">{doctor.name}</h2>
@@ -109,7 +109,7 @@ export default function DoctorProfile() {
                         </div>
 
                         {/* ricenzioni */}
-                        <div className="bg-gray-100 rounded-md p-10 mt-4 min-h-[300px]">
+                        <div className="bg-gray-50 border border-gray-200 rounded-md p-10 mt-4 min-h-[300px]">
                             <div className="font-semibold text-2xl mt-4">Feedback:</div>
                             {doctor.feedback && doctor.feedback.map(feedback => {
                                 return (
@@ -149,7 +149,8 @@ export default function DoctorProfile() {
                 </div>
             </div>}
 
-            <div className="mt-6 p-10 bg-gray-100 rounded-md">
+            {/* send message */}
+            <div className="mt-6 p-10 bg-gray-50 border border-gray-200 rounded-md">
 
                 <h4 className="text-xl font-semibold">Send a Message</h4>
 

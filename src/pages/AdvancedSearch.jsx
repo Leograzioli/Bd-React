@@ -67,7 +67,7 @@ export default function AdvancedSearch() {
   return (
     <div className="ms_vh " >
       <div className="max-w-[1200px] /px-[8%] mx-auto">
-        <div className="bg-gray-100 sm:my-16 p-10">
+        <div className="bg-gray-50 rounded border boder-gray-200 sm:my-16 p-10">
           <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
 
           {/* filters  section */}
