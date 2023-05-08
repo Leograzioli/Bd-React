@@ -60,11 +60,11 @@ export default function Feedback() {
 
   return (
     <>
-      <section id="feedback" className="mx-20 mt-16">
+      <section id="feedback" className="mx-8 md:mx-20 mt-16">
 
       <h2 className="text-3xl font-semibold">Feedback</h2>
 
-        <div className="flex flex-col max-w-[1200px]  bg-white border border-gray-200 p-6 rounded mx-auto mt-12">
+        <div className="flex flex-col max-w-[1200px] bg-white border border-gray-200 p-6 rounded mx-auto mt-12">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
               <div className="overflow-hidden">

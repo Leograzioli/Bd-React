@@ -18,7 +18,7 @@ export default function SingleMessage() {
     }, [])
 
     return (
-        <section id="messages" className="relative mx-4 md:mx-auto flex flex-col items-center mt-16 max-w-[1200px] bg-white rounded border border-gray-200 p-8">
+        <section id="messages" className="relative mx-4 lg:mx-20 2xl:mx-auto flex flex-col items-center mt-16 max-w-[1200px] bg-white rounded border border-gray-200 p-8">
 
             <h2 className="text-2xl">Message From <span className='font-semibold'>{message.name}</span></h2>
             <p className='mt-2 mr-2'>{message.accountholder}</p>

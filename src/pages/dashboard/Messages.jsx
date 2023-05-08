@@ -79,7 +79,7 @@ export default function Messages() {
 
   return (
     <>
-      <section id="messages" className="mx-20 mt-16">
+      <section id="messages" className="mx-8 md:mx-20 mt-16">
 
         <h2 className="text-3xl font-semibold">Messages</h2>
 

@@ -62,28 +62,44 @@ export default function DashboardLayout() {
             <div className="flex">
 
                 {/* Dashboard left menu */}
-                <div className="w-[310px] border-r border-t border-gray-200 h-screen">
-                    <div className="py-3 flex items-center justify-center gap-x-2">
+                <div className="w-[90px] sm:w-[310px] border-r border-t border-gray-200 h-screen">
+                    <div className="hidden sm:flex py-3 items-center justify-center gap-x-2">
                         <img src={Logo} alt="logo" className="h-[35px]" />
                         <h1 className="text-xl font-bold">B Doctors</h1>
                     </div>
 
                     <div className="font-semibold flex flex-col mt-12">
 
-                        <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-10 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-table-columns fa-sm mr-2"></i> Dashboard
+                        <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
+                            <i className="fa-solid fa-table-columns fa-sm mr-2"></i> 
+                            <span className="hidden sm:inline-block">
+
+                            Dashboard
+                            </span>
                         </NavLink>
 
-                        <NavLink to={'/dashboard/profile'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-10 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-user fa-sm mr-2"></i> profile
+                        <NavLink to={'/dashboard/profile'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
+                            <i className="fa-solid fa-user fa-sm mr-2"></i> 
+                            <span className="hidden sm:inline-block">
+
+                            profile
+                            </span>
                         </NavLink>
 
-                        <NavLink to={'/dashboard/messages'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-10 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-envelope fa-sm mr-2"></i> messages
+                        <NavLink to={'/dashboard/messages'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
+                            <i className="fa-solid fa-envelope fa-sm mr-2"></i> 
+                            <span className="hidden sm:inline-block">
+
+                            messages
+                            </span>
                         </NavLink>
 
-                        <NavLink to={'/dashboard/feedback'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-10 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-pencil fa-sm mr-2"></i> Feedback
+                        <NavLink to={'/dashboard/feedback'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
+                            <i className="fa-solid fa-pencil fa-sm mr-2"></i> 
+                            <span className="hidden sm:inline-block">
+
+                            Feedback
+                            </span>
                         </NavLink>
                     </div>
                 </div>
@@ -135,6 +151,7 @@ export default function DashboardLayout() {
                             </div>
                         </div>
                     </div>
+                    
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/profile" element={<Profile />} />
