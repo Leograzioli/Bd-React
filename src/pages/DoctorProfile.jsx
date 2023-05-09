@@ -54,21 +54,21 @@ export default function DoctorProfile() {
     }
 
     return (
-        <div className="max-w-[1200px] mx-auto my-16 ">
+        <div className="max-w-[1200px] mx-auto my-16">
 
             {/* will display the doctor only if the fetched data is over and there's a doctor to display */}
             {!isLoading && doctor && <div className="">
 
                 {/* card */}
-                <div className="flex gap-x-6">
+                <div className="md:flex">
 
                     {/* left card*/}
-                    <div className=" bg-gray-50 border border-gray-200 w-1/3 rounded-md py-10 px-6 flex flex-col items-center">
+                    <div className=" bg-gray-50 border border-gray-200 md:max-w-[350px] rounded-md py-10 px-4 sm:px-10 mx-4 md:mx-4 flex flex-col items-center">
 
                         {/* profile picture */}
-                        <img className="min-w-[320px] min-h-[300px] w-[320px] rounded-full object-cover" src={doc} alt="" />
+                        <img className="min-w-[310px] min-h-[310px] max-w-[310px] rounded-full object-cover" src={doc} alt="" />
 
-                        <div className="mt-10 text-lg px-12">
+                        <div className="mt-10 text-md">
                             <p className="font-semibold"><i className="fa-solid fa-envelope"></i> {doctor.email}</p>
                             {doctor.user_detail && <p className="mt-4 font-semibold "><i className="fa-solid fa-phone"></i> {doctor.user_detail.phone}</p>}
                             {doctor.user_detail && <p className="mt-4 font-semibold "><i className="fa-solid fa-syringe"></i> {doctor.user_detail.performance}</p>}
@@ -77,10 +77,10 @@ export default function DoctorProfile() {
                     </div>
 
                     {/* right card*/}
-                    <div className="w-2/3">
+                    <div >
 
                         {/* details */}
-                        <div className="bg-gray-50  border border-gray-200 rounded-md p-10">
+                        <div className="bg-gray-50  border border-gray-200 rounded-md mx-4 p-4 sm:px-10 mt-4 md:mt-0">
 
                             {/* full name  and specializations*/}
                             <h2 className="text-5xl text-center font-bold">{doctor.name}</h2>
@@ -109,7 +109,7 @@ export default function DoctorProfile() {
                         </div>
 
                         {/* ricenzioni */}
-                        <div className="bg-gray-50 border border-gray-200 rounded-md p-10 mt-4 min-h-[300px]">
+                        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 sm:p-10 mt-4 mx-4 min-h-[300px]">
                             <div className="font-semibold text-2xl mt-4">Feedback:</div>
                             {doctor.feedback && doctor.feedback.map(feedback => {
                                 return (
@@ -150,29 +150,29 @@ export default function DoctorProfile() {
             </div>}
 
             {/* send message */}
-            <div className="mt-6 p-10 bg-gray-50 border border-gray-200 rounded-md">
+            <div className="mt-4 p-4 sm:p-10 mx-4 bg-gray-50 border border-gray-200 rounded-md">
 
                 <h4 className="text-xl font-semibold">Send a Message</h4>
 
                 <form className="mt-6" onSubmit={(e) => { handleSubmit(e) }} >
-                    <div className="flex justify-around">
+                    <div className="md:flex justify-around">
 
-                        <div className="w-full">
+                        <div className="md:w-1/2">
                             <label className="">
                                 <div className="text-lg font-semibold">Name</div>
-                                <input onChange={(e) => { setName(e.target.value) }} value={name} type="text" placeholder="example: mario " className="mt-1 w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
+                                <input onChange={(e) => { setName(e.target.value) }} value={name} type="text" placeholder="example: mario " className="mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
                             </label>
 
-                            <label className="">
+                            <label>
                                 <div className="mt-5 text-lg font-semibold">Email</div>
-                                <input onChange={(e) => { setAccountHolder(e.target.value) }} value={accountholder} type="text" placeholder="example@gmail.com" className="mt-1 w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
+                                <input onChange={(e) => { setAccountHolder(e.target.value) }} value={accountholder} type="text" placeholder="example@gmail.com" className="mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
                             </label>
                         </div>
 
-                        <div>
+                        <div className="md:w-1/2">
                             <label>
                                 <div className=" text-lg font-semibold">Message</div>
-                                <textarea onChange={(e) => { setMessage(e.target.value) }} value={message} name="" id="" cols="70" rows="5" className="rounded-md mt-1 p-2 focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200"></textarea>
+                                <textarea onChange={(e) => { setMessage(e.target.value) }} value={message} name="" id="" rows="5" className="w-full rounded-md mt-1 p-2 focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200"></textarea>
                             </label>
                         </div>
                     </div>

@@ -71,34 +71,34 @@ export default function DashboardLayout() {
                     <div className="font-semibold flex flex-col mt-12">
 
                         <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-table-columns fa-sm mr-2"></i> 
+                            <i className="fa-solid fa-table-columns fa-sm mr-2"></i>
                             <span className="hidden sm:inline-block">
 
-                            Dashboard
+                                Dashboard
                             </span>
                         </NavLink>
 
                         <NavLink to={'/dashboard/profile'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-user fa-sm mr-2"></i> 
+                            <i className="fa-solid fa-user fa-sm mr-2"></i>
                             <span className="hidden sm:inline-block">
 
-                            profile
+                                profile
                             </span>
                         </NavLink>
 
                         <NavLink to={'/dashboard/messages'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-envelope fa-sm mr-2"></i> 
+                            <i className="fa-solid fa-envelope fa-sm mr-2"></i>
                             <span className="hidden sm:inline-block">
 
-                            messages
+                                messages
                             </span>
                         </NavLink>
 
                         <NavLink to={'/dashboard/feedback'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
-                            <i className="fa-solid fa-pencil fa-sm mr-2"></i> 
+                            <i className="fa-solid fa-pencil fa-sm mr-2"></i>
                             <span className="hidden sm:inline-block">
 
-                            Feedback
+                                Feedback
                             </span>
                         </NavLink>
                     </div>
@@ -151,15 +151,16 @@ export default function DashboardLayout() {
                             </div>
                         </div>
                     </div>
-                    
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/messages" element={<Messages  />} />
-                        <Route path="/feedback" element={<Feedback />} />
-                        <Route path="/messages/:id" element={<SingleMessage />} />
-                    </Routes>
 
+                    <div className="max-w-[1200px] mx-4 sm:mx-auto mt-12">
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/messages" element={<Messages />} />
+                            <Route path="/feedback" element={<Feedback />} />
+                            <Route path="/messages/:id" element={<SingleMessage />} />
+                        </Routes>
+                    </div>
                 </div>
             </div>
         </>

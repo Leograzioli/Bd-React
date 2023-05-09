@@ -79,25 +79,26 @@ export default function Messages() {
   }
 
   //to mark message as read 
-  const handleIsRead = (id) => {
-
-    const headers = {
-      Authorization: `Bearer ${token}`
+  const handleIsRead = (id, read) => {
+    if(read === 0){
+      const headers = {
+        Authorization: `Bearer ${token}`
+      }
+  
+      axios.put('http://127.0.0.1:8000/api/auth/message/edit/' + id,{}, { headers})
     }
-
-    axios.put('http://127.0.0.1:8000/api/auth/message/edit/' + id,{}, { headers})
     navigate("/dashboard/messages/" + id)
   }
 
   return (
     <>
-      <section id="messages" className="mx-8 mt-16">
+      <section id="messages">
 
         <h2 className="text-3xl font-semibold">Messages</h2>
 
-        <div className="flex flex-col max-w-[1200px] bg-white border border-gray-200 p-6 rounded mx-auto mt-12">
+        <div className="flex flex-col  bg-white border border-gray-200 px-6 pt-6 rounded mx-auto mt-8">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
                 <table className="min-w-full text-left text-sm font-light ">
                   <thead
@@ -120,7 +121,7 @@ export default function Messages() {
                           <td className="whitespace-nowrap hidden xl:block px-6 py-4">{message.message.slice(0, 40)} ...</td>
                           <td className="whitespace-nowrap px-6 py-4">{new Date(message.created_at).toLocaleDateString()}</td>
                           <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg ">
-                            <div onClick={ () => {handleIsRead(message.id)} } className="cursor-pointer"> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></div>
+                            <div onClick={ () => {handleIsRead(message.id, message.is_read)} } className="cursor-pointer"> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></div>
                             <div onClick={ () => { setIsOpen(true), setMessageId(message.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
                           </td>
                         </tr>

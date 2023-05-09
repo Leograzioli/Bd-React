@@ -60,17 +60,17 @@ export default function Feedback() {
 
   return (
     <>
-      <section id="feedback" className="mx-8 mt-16">
+      <section id="feedback">
 
       <h2 className="text-3xl font-semibold">Feedback</h2>
 
-        <div className="flex flex-col max-w-[1200px] bg-white border border-gray-200 p-6 rounded mx-auto mt-12">
+        <div className="flex flex-col bg-white border border-gray-200 px-6 pt-6 rounded mx-auto mt-8">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
                 <table className="min-w-full text-left text-sm font-light ">
                   <thead
-                    className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                    className="border-b bg-white font-medium">
                     <tr>
                       <th className="px-6 py-4">Name</th>
                       <th className="px-6 py-4">Vote</th>
@@ -83,7 +83,7 @@ export default function Feedback() {
                     {feedback && feedback.map((feed) => {
                       return (
                         <tr key={feed.id}
-                          className="border-b even:bg-blue-50 hover:bg-blue-300 transition-all dark:border-neutral-500 dark:bg-neutral-700">
+                          className="border-b even:bg-blue-50 hover:bg-blue-300 transition-all">
                           <td className="whitespace-nowrap px-6 py-4 font-semibold">{feed.name}</td>
                           <td className="whitespace-nowrap px-6 py-4">{feed.vote}</td>
                           <td className="whitespace-nowrap hidden xl:block px-6 py-4">{feed.feedback_description.slice(0, 40)} ...</td>
