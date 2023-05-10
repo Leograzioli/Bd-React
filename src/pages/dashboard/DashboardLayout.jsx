@@ -152,7 +152,7 @@ export default function DashboardLayout() {
                         </div>
                     </div>
 
-                    <div className="max-w-[1200px] mx-4 sm:mx-auto mt-12">
+                    <div className="max-w-[1200px] mx-4 2xl:mx-auto mt-12">
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/profile" element={<Profile />} />

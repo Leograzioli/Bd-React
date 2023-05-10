@@ -28,10 +28,6 @@ function AppMain() {
             params: {
                 page: currentPage
             },
-            headers: {
-
-                Authorization: `Bearer ${Cookies.get('token')}`
-            }
         }).then(resp => {
             setDoctorsList(resp.data.doctors.data);
             setCurrentPage(resp.data.doctors.current_page)

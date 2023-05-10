@@ -57,13 +57,13 @@ export default function DoctorProfile() {
         <div className="max-w-[1200px] mx-auto my-16">
 
             {/* will display the doctor only if the fetched data is over and there's a doctor to display */}
-            {!isLoading && doctor && <div className="">
+            {!isLoading && doctor && <div className="mx-4">
 
                 {/* card */}
                 <div className="md:flex">
 
                     {/* left card*/}
-                    <div className=" bg-gray-50 border border-gray-200 md:max-w-[350px] rounded-md py-10 px-4 sm:px-10 mx-4 md:mx-4 flex flex-col items-center">
+                    <div className=" bg-gray-50 border border-gray-200 md:max-w-[350px] rounded-md py-10 px-4 sm:px-10  md:mr-4 flex flex-col items-center">
 
                         {/* profile picture */}
                         <img className="min-w-[310px] min-h-[310px] max-w-[310px] rounded-full object-cover" src={doc} alt="" />
@@ -80,7 +80,7 @@ export default function DoctorProfile() {
                     <div >
 
                         {/* details */}
-                        <div className="bg-gray-50  border border-gray-200 rounded-md mx-4 p-4 sm:px-10 mt-4 md:mt-0">
+                        <div className="bg-gray-50  border border-gray-200 rounded-md p-4 sm:px-10 mt-4 md:mt-0">
 
                             {/* full name  and specializations*/}
                             <h2 className="text-5xl text-center font-bold">{doctor.name}</h2>
@@ -109,7 +109,7 @@ export default function DoctorProfile() {
                         </div>
 
                         {/* ricenzioni */}
-                        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 sm:p-10 mt-4 mx-4 min-h-[300px]">
+                        <div className="bg-gray-50 border border-gray-200 rounded-md p-4 sm:p-10 mt-4  min-h-[300px]">
                             <div className="font-semibold text-2xl mt-4">Feedback:</div>
                             {doctor.feedback && doctor.feedback.map(feedback => {
                                 return (
@@ -150,7 +150,7 @@ export default function DoctorProfile() {
             </div>}
 
             {/* send message */}
-            <div className="mt-4 p-4 sm:p-10 mx-4 bg-gray-50 border border-gray-200 rounded-md">
+            <div className="mt-4 mx-4 p-4 sm:p-10 bg-gray-50 border border-gray-200 rounded-md">
 
                 <h4 className="text-xl font-semibold">Send a Message</h4>
 
