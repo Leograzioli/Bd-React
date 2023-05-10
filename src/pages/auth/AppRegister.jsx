@@ -48,14 +48,14 @@ export default function AppRegister() {
                             <div className="mt-3 mx-auto w-full">
                                 <label>
                                     <div className="text-xl">name* </div>
-                                    <input onChange={(e) => { setName(e.target.value) }} name="name" type="text" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input placeholder="ex: Mario Bross" onChange={(e) => { setName(e.target.value) }} name="name" type="text" className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>
                             </div>
 
                             <div className="mt-3">
                                 <label>
                                     <div className="text-xl">email* </div>
-                                    <input onChange={(e) => { setEmail(e.target.value) }} name="email" type="email" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input placeholder="ex: mariobross@gmail.com" onChange={(e) => { setEmail(e.target.value) }} name="email" type="email" className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>
                             </div>
 
