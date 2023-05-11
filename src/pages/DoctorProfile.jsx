@@ -12,6 +12,7 @@ export default function DoctorProfile() {
     const [accountholder, setAccountHolder] = useState('')
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [messageLoading, setMessageLoading] = useState(false)
 
     //to fetch sigle doctor 
     useEffect(() => {
@@ -35,6 +36,8 @@ export default function DoctorProfile() {
     // submit new message 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        setMessageLoading(true)
         axios.post('http://127.0.0.1:8000/api/guest/message/add', {
             name,
             accountholder,
@@ -51,6 +54,7 @@ export default function DoctorProfile() {
             setName('')
             setAccountHolder('')
             setMessage('')
+            setMessageLoading(false)
         })
     }
 
@@ -135,21 +139,6 @@ export default function DoctorProfile() {
                 </div>
             </div>}
 
-            {/* loading  */}
-            {isLoading && <div className="flex justify-center items-center h-[calc(100vh-80px-128px)]">
-                <div className="text-2xl font-semibold flex items-baseline gap-x-2">
-                    <svg className="animate-spin border-t-2 rounded-full border-2 border-black border-t-white w-4 h-4 " />
-                    <div>Loading...</div>
-                </div>
-            </div>}
-
-            {/* if there's no doc to display */}
-            {!isLoading && !doctor && <div className="flex justify-center items-center h-[calc(100vh-80px-128px)]">
-                <div className="text-4xl font-semibold">
-                    no doc to display :(
-                </div>
-            </div>}
-
             {/* send message */}
             <div className="mt-4 mx-4 p-4 sm:p-10 bg-gray-50 border border-gray-200 rounded-md">
 
@@ -179,10 +168,25 @@ export default function DoctorProfile() {
                     </div>
 
                     <div className="text-end mt-4">
-                        <button className="px-2 py-1 bg-blue-600 rounded-md text-white" >send</button>
+                        <button className="px-2 py-1 bg-blue-600 rounded-md text-white" >{messageLoading ? 'Sending...' : 'Send'}</button>
                     </div>
                 </form>
             </div>
+
+            {/* loading  */}
+            {isLoading && <div className="flex justify-center items-center h-[calc(100vh-80px-128px)]">
+                <div className="text-2xl font-semibold flex items-baseline gap-x-2">
+                    <svg className="animate-spin border-t-2 rounded-full border-2 border-black border-t-white w-4 h-4 " />
+                    <div>Loading...</div>
+                </div>
+            </div>}
+
+            {/* if there's no doc to display */}
+            {!isLoading && !doctor && <div className="flex justify-center items-center h-[calc(100vh-80px-128px)]">
+                <div className="text-4xl font-semibold">
+                    no doc to display :(
+                </div>
+            </div>}
         </div>
     )
 }
