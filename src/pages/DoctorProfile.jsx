@@ -39,7 +39,8 @@ export default function DoctorProfile() {
             name,
             accountholder,
             message,
-            user_id: doctor.id
+            user_id: doctor.id,
+            is_read: 0
         }).then(resp => {
             console.log(resp.data);
 

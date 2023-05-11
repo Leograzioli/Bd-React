@@ -22,6 +22,8 @@ import { useState } from 'react'
 function App() {
   const [token] = useState(Cookies.get('token'))
 
+  //navigator.appVersion
+
   return (
     <div className='App'>
       <BrowserRouter>

@@ -96,7 +96,7 @@ export default function Messages() {
 
         <h2 className="text-3xl font-semibold">Messages</h2>
 
-        <div className="flex flex-col  bg-white border border-gray-200 px-6 pt-6 rounded mx-auto mt-8">
+        {!isLoading && <div className="flex flex-col  bg-white border border-gray-200 px-6 pt-6 rounded mx-auto mt-8">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
@@ -136,7 +136,10 @@ export default function Messages() {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
+
+        {/* loading */}
+        {isLoading && <div className="mt-8 text-5xl font-semibold bg-white py-16 rounded border boder-gray-200 text-center">Loading..</div>}
 
         {/* modal */}
         {isOpen && <div className="absolute top-0 right-0 left-0 bottom-0 bg-[#000000a6]">

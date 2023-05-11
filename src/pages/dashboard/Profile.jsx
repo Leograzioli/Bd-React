@@ -25,7 +25,7 @@ export default function Profile() {
         console.log(err);
 
       }).finally(() => {
-        setIsLoading()
+        setIsLoading(false)
 
       })
   }
@@ -71,6 +71,8 @@ export default function Profile() {
 
           </div>
         </div>}
+
+        {isLoading && <div className="mt-8 text-5xl font-semibold bg-white py-16 rounded border boder-gray-200 text-center">Loading..</div>}
       </section>
     </>
   )
