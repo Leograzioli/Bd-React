@@ -1,5 +1,7 @@
 import './App.css'
 import { Route, BrowserRouter, Routes, useLocation, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import Cookies from 'js-cookie'
 
 //components
 import AppHeader from './components/AppHeader'
@@ -13,15 +15,15 @@ import AdvancedSearch from './pages/AdvancedSearch'
 import DoctorProfile from './pages/DoctorProfile'
 import AppLogin from './pages/auth/AppLogin'
 import AppRegister from './pages/auth/AppRegister'
-import Cookies from 'js-cookie'
 import Dashboard from './pages/dashboard/DashboardLayout'
-import ProtectedRoute from './utilities/ProtectedRoute'
-import { useState } from 'react'
 
+//utilities
+import ProtectedRoute from './utilities/ProtectedRoute'
 
 function App() {
   const [token] = useState(Cookies.get('token'))
 
+  //to get device information
   //navigator.appVersion
 
   return (
@@ -30,6 +32,8 @@ function App() {
         <ScrollToTop />
         <AppHeader />
         <Routes>
+
+          {/* guests */}
           <Route path='/' element={<AppMain />} />
           <Route path='/about-us' element={<AboutUs />} />
           <Route path='/login' element={token ? <Navigate to={'/'} /> : <AppLogin />} />
@@ -37,6 +41,7 @@ function App() {
           <Route path='/search' element={<AdvancedSearch />} />
           <Route path='/doctor/:id' element={<DoctorProfile />} />
 
+          {/* protected routes */}
           <Route element={<ProtectedRoute />} >
             <Route path='/dashboard/*' element={<Dashboard />} />
           </Route>
