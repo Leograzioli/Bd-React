@@ -115,13 +115,13 @@ export default function Messages() {
                     {messages && messages.map((message) => {
                       return (
                         <tr key={message.id}
-                          className={`${"border-b hover:bg-blue-300 transition-all dark:border-neutral-500 dark:bg-neutral-700"} ${!message.is_read && 'bg-blue-100 border-b border-white font-semibold'}`}>
-                          <td className="whitespace-nowrap px-6 py-4 font-semibold">{message.name}</td>
-                          <td className="whitespace-nowrap px-6 py-4">{message.accountholder}</td>
-                          <td className="whitespace-nowrap hidden xl:block px-6 py-4">{message.message.slice(0, 40)} ...</td>
+                          className={`border-b hover:bg-blue-300 transition-all dark:border-neutral-500 dark:bg-neutral-700' ${!message.is_read && 'bg-blue-100 border-b border-white font-semibold'}`}>
+                          <td className="whitespace-nowrap px-6 py-4 font-semibold">{ message.name }</td>
+                          <td className="whitespace-nowrap px-6 py-4">{ message.accountholder }</td>
+                          <td className="whitespace-nowrap hidden xl:block px-6 py-4">{ message.message.slice(0, 40) } ...</td>
                           <td className="whitespace-nowrap px-6 py-4">{new Date(message.created_at).toLocaleDateString()}</td>
                           <td className="whitespace-nowrap px-6 py-4 flex justify-center gap-x-2 text-lg ">
-                            <div onClick={ () => {handleIsRead(message.id, message.is_read)} } className="cursor-pointer"> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></div>
+                            <div onClick={ () => { handleIsRead(message.id, message.is_read) }} className="cursor-pointer"> <i className="fa-solid fa-eye bg-white rounded text-blue-400"></i></div>
                             <div onClick={ () => { setIsOpen(true), setMessageId(message.id) }} href=""> <i className="fa-solid fa-trash-can text-red-600 cursor-pointer"></i></div>
                           </td>
                         </tr>

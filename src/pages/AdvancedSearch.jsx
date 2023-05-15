@@ -60,16 +60,16 @@ export default function AdvancedSearch() {
   }
 
   return (
-    <div className="ms_vh " >
+    <div  className="ms_vh " >
       <div className="max-w-[1200px] /px-[8%] mx-auto">
         <div className="bg-gray-50 rounded border boder-gray-200 sm:my-16 p-10">
           <h2 className="text-4xl mt-5 text-center font-semibold text-slate-900 ms_title_detail">Doctor List</h2>
 
           {/* filters  section */}
-          <div className="mt-16 flex justify-center">
+          <div className="mt-16 sm:flex justify-center">
 
             {/* specializations */}
-            <select value={searchParams.get('spec') ? searchParams.get('spec') : ''} onChange={(e) => setSpecInput(e.target.value)} className="w-1/3 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
+            <select value={searchParams.get('spec') ? searchParams.get('spec') : ''} onChange={(e) => setSpecInput(e.target.value)} className="w-full sm:w-1/3 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="specialization" id="specialization">
               <option value="">Select a Specialization</option>
               {specializations && specializations.map((specialization) => {
                 return <option key={specialization.id} value={specialization.slug}> {specialization.title} </option>
@@ -78,7 +78,7 @@ export default function AdvancedSearch() {
             </select>
 
             {/* vote */}
-            <select value={searchParams.get('vote') ? searchParams.get('vote') : ''} onChange={(e) => setVoteInput(e.target.value)} className="ml-5 block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="vote" id="vote">
+            <select value={searchParams.get('vote') ? searchParams.get('vote') : ''} onChange={(e) => setVoteInput(e.target.value)} className="mt-4 md:mt-0 md:ml-5 w-full sm:w-fit block p-3 border border-gray-300 hover:border-gray-500 rounded-lg focus:outline-blue-200 focus:border-blue-200" name="vote" id="vote">
               <option value="">Vote</option>
               <option className="text-xl" value="1">&#9733;</option>
               <option className="text-xl" value="2">&#9733;&#9733;</option>
@@ -90,7 +90,7 @@ export default function AdvancedSearch() {
           </div>
 
           {/* grid  */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12 mt-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-24 mt-16">
 
             {doctorsList.length > 0 && doctorsList.map((doctor) => {
               return <DoctorCard key={doctor.id} doctor={doctor} />

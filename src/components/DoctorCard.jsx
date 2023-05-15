@@ -4,7 +4,7 @@ export default function DoctorCard({ doctor }) {
     return (
         <>
             {/* card  */}
-            <div className="bg-white border boder-gray-200 rounded-tl-xl rounded-br-xl p-4 max-w-[330px]">
+            <div className="bg-white border boder-gray-200 rounded-tl-xl rounded-br-xl p-4 max-w-[310px]">
 
                 {/* image  */}
                 <div>

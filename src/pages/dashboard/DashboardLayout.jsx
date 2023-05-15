@@ -68,7 +68,7 @@ export default function DashboardLayout() {
                         <h1 className="text-xl font-bold">B Doctors</h1>
                     </div>
 
-                    <div className="font-semibold flex flex-col mt-12">
+                    <div className="font-semibold flex flex-col mt-12 text-neutral-800">
 
                         <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
                             <i className="fa-solid fa-table-columns fa-sm mr-2"></i>

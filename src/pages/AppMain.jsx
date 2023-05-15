@@ -98,7 +98,7 @@ function AppMain() {
                     </div>
 
                     {/* grid  */}
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-12 mt-16">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 lg:gap-24 mt-16">
 
                         {doctorsList && doctorsList.map((doctor) => {
                             return <DoctorCard key={doctor.id} doctor={doctor} />
