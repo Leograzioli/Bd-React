@@ -12,8 +12,8 @@ export default function DoctorCard({ doctor }) {
                 </div>
 
                 {/* contact info  */}
-                <h2 className="text-2xl text-center mt-8 font-semibold text-slate-900">{doctor.name}</h2>
-                <p className="mt-6"> <span className="font-semibold"><i className="fa-solid fa-envelope"></i></span> {doctor.email} </p>
+                <h2 className="text-2xl text-center mt-6 font-semibold text-slate-900">{doctor.name}</h2>
+                <p className="mt-4"> <span className="font-semibold"><i className="fa-solid fa-envelope"></i></span> {doctor.email} </p>
                 <p className="mt-1">
                     <span className="font-semibold"> <i className="fa-solid fa-phone"></i></span> {doctor.user_detail?.phone}
                 </p>
@@ -26,7 +26,7 @@ export default function DoctorCard({ doctor }) {
                         })}
                     </span>
                 </div>
-                <div className="flex justify-between mt-8">
+                <div className="flex justify-between mt-6">
                     <p>
                         {Array.from({ length: 5 }, (_, i) => (
                             <i

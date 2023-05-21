@@ -1,4 +1,4 @@
-import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom"
+import { Link, NavLink, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 
 import Profile from "./Profile"
 import Messages from "./Messages"
@@ -9,21 +9,36 @@ import Logo from '../../assets/logo.jpg'
 import Cookies from "js-cookie"
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
+import NavMenu from "../../components/NavMenu"
 
 export default function DashboardLayout() {
     const token = Cookies.get('token')
     const user = Cookies.get('userName')
+    let location = useLocation()
+    
     const navigate = useNavigate()
-
     const [isOpen, setIsOpen] = useState(false)
-    const menuRef = useRef()
+    const dashRef = useRef()
+
+    const menuItem = [
+        {
+            title : 'Dashboard',
+            titleIcon: 'fa-solid fa-table-columns fa-sm mr-2',
+            subMenu : 'Messages'
+        },
+        {
+            title : 'Profile',
+            titleIcon: 'fa-solid fa-user fa-sm mr-2',
+            subMenu : 'Edit'
+        },
+    ]
 
     useEffect(() => {
 
         if (!location.pathname.includes('/dashboard')) {
 
             const handleMenu = (e) => {
-                if (!menuRef.current.contains(e.target)) {
+                if (!dashRef.current.contains(e.target)) {
                     setIsOpen(false)
                 }
             }
@@ -70,7 +85,14 @@ export default function DashboardLayout() {
 
                     <div className="font-semibold flex flex-col mt-12 text-neutral-800">
 
-                        <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
+
+                        {menuItem.map((item) => {
+                            return (
+                                <div key={item.title} ><NavMenu menu={item} /></div>
+                            )
+                        })}
+
+                        {/* <NavLink to={'/dashboard'} end className={({ isActive }) => isActive ? 'bg-blue-50 py-3 pl-8 border-r-2 border-blue-500' : 'py-3 pl-8 hover:bg-blue-50 transition-all'}>
                             <i className="fa-solid fa-table-columns fa-sm mr-2"></i>
                             <span className="hidden sm:inline-block">
 
@@ -100,7 +122,7 @@ export default function DashboardLayout() {
 
                                 Feedback
                             </span>
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </div>
 
@@ -115,7 +137,7 @@ export default function DashboardLayout() {
                             {!token && <Link className="ml-3" to='/login'>login</Link>}
                             {!token && <Link className="ml-3" to='/register'>register</Link>}
 
-                            <div className="menu-container" ref={menuRef}>
+                            <div className="menu-container" ref={dashRef}>
                                 {token &&
                                     <div onClick={() => { setIsOpen(!isOpen) }} className="ml-3 relative cursor-pointer">
                                         <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up fa-xs"></i> : <i className="fa-solid fa-chevron-down fa-xs"></i>}</div>
