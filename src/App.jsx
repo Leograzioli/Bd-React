@@ -43,7 +43,7 @@ function App() {
 
           {/* protected routes */}
           <Route element={<ProtectedRoute />} >
-            <Route path='/dashboard/*' element={<Dashboard />} />
+            <Route path='/adm/*' element={<Dashboard />} />
           </Route>
         </Routes>
         <AppFooter />

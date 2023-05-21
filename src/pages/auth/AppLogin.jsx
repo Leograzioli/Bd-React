@@ -18,7 +18,7 @@ export default function AppLogin() {
         }).then(resp => {
             console.log(resp.data);
             if (resp.data.status) {
-                navigate('/dashboard')
+                navigate('/adm')
                 Cookies.set('token', resp.data.token, { expires: 1 / 24 })
                 Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 } )
             }
@@ -34,13 +34,13 @@ export default function AppLogin() {
 
                         <form onSubmit={handleSubmit} className="flex flex-col py-12 px-12">
                             <div className="mt-3 mx-auto w-full">
-                                <label htmlFor="">
+                                <label >
                                     <div className="text-xl">Email</div>
                                     <input onChange={(e) => setEmail(e.target.value)} value={'mariorossi@gmail.com'} type="text" className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>
                             </div>
                             <div className="mt-3 mx-auto w-full">
-                                <label htmlFor="">
+                                <label >
                                     <div className="text-xl">Password</div>
                                     <input onChange={(e) => setPassword(e.target.value)} type="password" value={"123123123"} className="rounded-md py-2 px-4 w-full mt-1" />
                                 </label>

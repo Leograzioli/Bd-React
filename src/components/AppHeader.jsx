@@ -16,7 +16,7 @@ export default function AppHeader() {
 
   useEffect(() => {
 
-    if (!location.pathname.includes('/dashboard')) {
+    if (!location.pathname.includes('/adm')) {
       
       const handleMenu = (e) => {
         if (!menuRef.current.contains(e.target)) {
@@ -56,7 +56,7 @@ export default function AppHeader() {
 
   return (
     <>
-      {!location.pathname.includes('/dashboard') && <div className="bg-blue-200 border-b">
+      {!location.pathname.includes('/adm') && <div className="bg-blue-200 border-b">
         <header className="mx-auto px-4 max-w-[1200px]">
           <nav className="h-[59px] flex ">
 
@@ -79,22 +79,17 @@ export default function AppHeader() {
                     <div>{user} {isOpen ? <i className="fa-solid fa-chevron-up fa-xs"></i> : <i className="fa-solid fa-chevron-down fa-xs"></i>}</div>
                     <div className={isOpen ? 'w-[130px] capitalize font-semibold absolute top-8 right-0 block rounded border border-gray-300 bg-white' : 'hidden'} >
 
-                      <Link to={'/dashboard'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
-                        <i className="fa-solid fa-table-columns fa-xs mr-2"></i>
-                        <div>Dashboard</div>
-                      </Link>
-
-                      <Link to={'/dashboard/profile'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                      <Link to={'adm/profile/edit'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
                         <i className="fa-solid fa-user fa-xs mr-2"> </i>
                         <div>Profile</div>
                       </Link>
 
-                      <Link to={'/dashboard/messages'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                      <Link to={'/adm/dashboard/messages'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
                         <i className="fa-solid fa-envelope fa-xs mr-2"></i>
                         <div>messages</div>
                       </Link>
 
-                      <Link to={'/dashboard/feedback'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
+                      <Link to={'/adm/dashboard/feedback'} className="text-sm py-2 hover:bg-blue-50 px-4 flex items-baseline">
                         <i className="fa-solid fa-pencil fa-xs mr-2"></i>
                         <div>feedback</div>
                       </Link>
