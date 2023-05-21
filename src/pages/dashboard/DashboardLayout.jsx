@@ -22,14 +22,14 @@ export default function DashboardLayout() {
 
     const menuItem = [
         {
-            title : 'Dashboard',
+            title : 'dashboard',
             titleIcon: 'fa-solid fa-table-columns fa-sm mr-2',
-            subMenu : 'Messages'
+            subMenu : ['messages', 'feedback']
         },
         {
-            title : 'Profile',
+            title : 'profile',
             titleIcon: 'fa-solid fa-user fa-sm mr-2',
-            subMenu : 'Edit'
+            subMenu : ['edit']
         },
     ]
 
