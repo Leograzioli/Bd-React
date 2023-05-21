@@ -86,8 +86,8 @@ export default function DashboardLayout() {
                             {!token && <Link className="ml-3" to='/login'>login</Link>}
                             {!token && <Link className="ml-3" to='/register'>register</Link>}
 
-                            <div className=" py-2 ml-3 cursor-pointer">
-                                <a onClick={(e) => { handleClick(e) }}>Logout</a>
+                            <div onClick={(e) => { handleClick(e) }} className=" py-2 ml-3 cursor-pointer flex items-baseline">
+                                <div >Logout</div>
                                 <i className="fa-solid fa-arrow-right-from-bracket fa-xs ml-2"></i>
                             </div>
                         </div>
