@@ -1,4 +1,4 @@
-import { Link, NavLink, Route, Routes, useLocation, useNavigate } from "react-router-dom"
+import { Link, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 
 import Profile from "./Profile"
 import Messages from "./Messages"
@@ -35,7 +35,7 @@ export default function DashboardLayout() {
 
     useEffect(() => {
 
-        if (!location.pathname.includes('/dashboard')) {
+        if (location.pathname.includes('/dashboard')) {
 
             const handleMenu = (e) => {
                 if (!dashRef.current.contains(e.target)) {
