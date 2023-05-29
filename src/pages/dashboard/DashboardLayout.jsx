@@ -19,12 +19,12 @@ export default function DashboardLayout() {
     const menuItem = [
         {
             title: 'dashboard',
-            titleIcon: 'fa-solid fa-table-columns fa-sm mr-2',
+            titleIcon: 'fa-solid fa-table-columns fa-sm',
             subMenu: ['messages', 'feedback']
         },
         {
             title: 'profile',
-            titleIcon: 'fa-solid fa-user fa-sm mr-2',
+            titleIcon: 'fa-solid fa-user fa-sm',
             subMenu: ['edit']
         },
     ]
@@ -58,7 +58,7 @@ export default function DashboardLayout() {
             <div className="flex">
 
                 {/* Dashboard left menu */}
-                <div className="w-[90px] sm:w-[310px] border-r border-t border-gray-200 h-screen">
+                <div className="w-[90px] sm:w-[310px] border-r border-gray-200 h-screen">
                     <div className="hidden sm:flex py-3 items-center justify-center gap-x-2">
                         <img src={Logo} alt="logo" className="h-[35px]" />
                         <h1 className="text-xl font-bold">B Doctors</h1>
