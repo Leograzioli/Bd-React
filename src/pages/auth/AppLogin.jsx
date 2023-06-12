@@ -44,6 +44,7 @@ export default function AppLogin() {
                     <div className="w-[400px] bg-blue-200 rounded-md">
 
                         <form onSubmit={handleSubmit} className="flex flex-col py-12 px-12">
+
                             <div className="mt-3 mx-auto w-full">
                                 <label >
                                     <div className="text-xl">Email</div>
@@ -53,6 +54,7 @@ export default function AppLogin() {
                                     ))}
                                 </label>
                             </div>
+
                             <div className="mt-3 mx-auto w-full">
                                 <label >
                                     <div className="text-xl">Password</div>
@@ -64,8 +66,8 @@ export default function AppLogin() {
                             </div>
 
                             <Link to={'/register'} className="mx-auto mt-4 text-sm underline text-blue-700">Not registered yet?</Link>
-
                             <button className="mt-4 bg-white rounded-md py-1 w-1/3 mx-auto font-semibold">{loading? 'loading..' : 'Login'}</button>
+                            
                         </form>
 
                     </div>

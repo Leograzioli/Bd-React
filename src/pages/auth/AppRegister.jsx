@@ -7,6 +7,7 @@ export default function AppRegister() {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [errors, setErrors] = useState([])
     const [specializations, setSpecializations] = useState([])
     const [specialization, setSpecialization] = useState(null)
     const [password, setPassword] = useState('')
@@ -29,6 +30,9 @@ export default function AppRegister() {
                 Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 })
                 navigate('/')
             }
+        }).catch(err => {
+            setErrors(err.response.data.error);
+            console.log(err.response.data.error);
         })
     }
 
@@ -48,21 +52,27 @@ export default function AppRegister() {
                             <div className="mt-3 mx-auto w-full">
                                 <label>
                                     <div className="text-xl">name* </div>
-                                    <input placeholder="ex: Mario Bross" onChange={(e) => { setName(e.target.value) }} name="name" type="text" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input placeholder="ex: Mario Bross" onChange={(e) => { setName(e.target.value) }} name="name" type="text" className={`${errors.name? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
+                                    {errors.name && errors.name.map( err => (
+                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                    ))}
                                 </label>
                             </div>
 
                             <div className="mt-3">
                                 <label>
                                     <div className="text-xl">email* </div>
-                                    <input placeholder="ex: mariobross@gmail.com" onChange={(e) => { setEmail(e.target.value) }} name="email" type="email" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input placeholder="ex: mariobross@gmail.com" onChange={(e) => { setEmail(e.target.value) }} name="email" type="email" className={`${errors.email? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
+                                    {errors.email && errors.email.map( err => (
+                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                    ))}
                                 </label>
                             </div>
 
                             <div className="mt-3">
                                 <label>
                                     <div className="text-xl">specialization*</div>
-                                    <select onChange={ (e)=> { setSpecialization(e.target.value) } } className="rounded-md py-2 px-4 w-full mt-1" name="" id="">
+                                    <select onChange={ (e)=> { setSpecialization(e.target.value) } } className={`${errors.specialization? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} name="" id="">
                                         <option value="">Choose an Specialization</option>
                                         {specializations && specializations.map( (spec) => {
                                             return (
@@ -70,26 +80,35 @@ export default function AppRegister() {
                                             )
                                         } )}
                                     </select>
+                                    {errors.specialization && errors.specialization.map( err => (
+                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                    ))}
                                 </label>
                             </div>
 
                             <div className="mt-3">
                                 <label>
                                     <div className="text-xl">password* </div>
-                                    <input onChange={(e) => { setPassword(e.target.value) }} name="password" type="password" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input onChange={(e) => { setPassword(e.target.value) }} name="password" type="password" className={`${errors.password? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
+                                    {errors.password && errors.password.map( err => (
+                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                    ))}
                                 </label>
                             </div>
 
                             <div className="mt-3">
                                 <label>
                                     <div className="text-xl">password* </div>
-                                    <input onChange={(e) => { setPassword_confirmation(e.target.value) }} name="password" type="password" className="rounded-md py-2 px-4 w-full mt-1" />
+                                    <input onChange={(e) => { setPassword_confirmation(e.target.value) }} name="password" type="password" className={`${errors.password? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
+                                    {errors.password && errors.password.map( err => (
+                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                    ))}
                                 </label>
                             </div>
 
                             <Link to={'/login'} className="mx-auto mt-2 text-sm underline text-blue-700">already registered?</Link>
-
                             <button className="mt-6 bg-white rounded-md py-1 w-1/3 mx-auto font-semibold">Register</button>
+                            
                         </form>
                     </div>
                 </div>
