@@ -2,6 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 export default function AppLogin() {
     const [email, setEmail] = useState('mariorossi@gmail.com')
@@ -21,14 +23,25 @@ export default function AppLogin() {
         }).then(resp => {
 
             if (resp.data.status) {
-                navigate('/adm')
                 Cookies.set('token', resp.data.token, { expires: 1 / 24 })
                 Cookies.set('userName', resp.data.user.name, { expires: 1 / 24 } )
+                navigate('/adm')
+                toast.success('you are logged in!')
             }
 
         }).catch(err => {
 
             setErrors(err.response.data.error);
+
+            if (err.response.data.error.email) {
+                toast.error(err.response.data.error.email[0])
+            }
+
+            if (err.response.data.error.password) {
+                toast.error(err.response.data.error.password[0])
+            }
+
+
 
         }).finally( () => {
 
@@ -50,7 +63,7 @@ export default function AppLogin() {
                                     <div className="text-xl">Email</div>
                                     <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className={`${errors.email? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
                                     {errors.email && errors.email.map( err => (
-                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                        <span key={err} className="text-red-500 text-xs">-{err}</span>
                                     ))}
                                 </label>
                             </div>
@@ -60,7 +73,7 @@ export default function AppLogin() {
                                     <div className="text-xl">Password</div>
                                     <input onChange={(e) => setPassword(e.target.value)} type="password" value={password} className={`${errors.password? 'border-2 border-red-500' : ''} rounded-md py-2 px-4 w-full mt-1`} />
                                     {errors.password && errors.password.map( err => (
-                                        <span key={err} className="text-red-500 text-sm">-{err}</span>
+                                        <span key={err} className="text-red-500 text-xs">-{err}</span>
                                     ))}
                                 </label>
                             </div>

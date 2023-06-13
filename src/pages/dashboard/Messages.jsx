@@ -87,7 +87,7 @@ export default function Messages() {
   
       axios.put('http://127.0.0.1:8000/api/auth/message/edit/' + id,{}, { headers})
     }
-    navigate("/dashboard/messages/" + id)
+    navigate("/adm/messages/" + id)
   }
 
   return (

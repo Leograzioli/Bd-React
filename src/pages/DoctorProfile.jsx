@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom"
 
 //img
 import doc from '../assets/doc-2.jpg'
+import { toast } from "react-toastify"
 
 export default function DoctorProfile() {
     const { id } = useParams()
     const [doctor, setDoctor] = useState({})
     const [name, setName] = useState('')
+    const [errors, setErrors] = useState([])
     const [accountholder, setAccountHolder] = useState('')
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -36,6 +38,7 @@ export default function DoctorProfile() {
     // submit new message 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setErrors([])
 
         setMessageLoading(true)
         axios.post('http://127.0.0.1:8000/api/guest/message/add', {
@@ -46,14 +49,23 @@ export default function DoctorProfile() {
             is_read: 0
         }).then(resp => {
             console.log(resp.data);
+            if (resp.data.success) {
+                setName('')
+                setAccountHolder('')
+                setMessage('')
+                toast.success('messaggio inviato con successo')
+            }
 
         }).catch(err => {
-            console.log(err);
+            setErrors(err.response.data.errors);
+
+            for (let error in err.response.data.errors) {
+                if (err.response.data.errors.hasOwnProperty(error)) {
+                    toast.error(err.response.data.errors[error][0]);
+                }
+            }
 
         }).finally(() => {
-            setName('')
-            setAccountHolder('')
-            setMessage('')
             setMessageLoading(false)
         })
     }
@@ -150,19 +162,22 @@ export default function DoctorProfile() {
                         <div className="md:w-1/2">
                             <label className="">
                                 <div className="text-lg font-semibold">Name</div>
-                                <input onChange={(e) => { setName(e.target.value) }} value={name} type="text" placeholder="example: mario " className="mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
+                                <input onChange={(e) => { setName(e.target.value), errors.name = null }} value={name} type="text" placeholder="example: mario " className={`mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 ${ errors.name? 'border-red-500' : 'border-2' } hover:border-blue-300 hover:outline-blue-200`}/>
+                                {errors.name ? <span className="block text-xs text-red-500 font-semibold mt-1">- { errors.name }</span> : null}
                             </label>
 
                             <label>
                                 <div className="mt-5 text-lg font-semibold">Email</div>
-                                <input onChange={(e) => { setAccountHolder(e.target.value) }} value={accountholder} type="text" placeholder="example@gmail.com" className="mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200" />
+                                <input onChange={(e) => { setAccountHolder(e.target.value), errors.accountholder = null }} value={accountholder} type="text" placeholder="example@gmail.com" className={`mt-1 w-full md:w-3/4 p-2 rounded-md focus:outline-blue-200 border-2 ${ errors.accountholder? 'border-red-500' : 'border-2' } hover:border-blue-300 hover:outline-blue-200`} />
+                                {errors.accountholder ? <span className="block text-xs text-red-500 font-semibold mt-1">- { errors.accountholder }</span> : null}
                             </label>
                         </div>
 
                         <div className="md:w-1/2">
                             <label>
                                 <div className=" text-lg font-semibold">Message</div>
-                                <textarea onChange={(e) => { setMessage(e.target.value) }} value={message} name="" id="" rows="5" className="w-full rounded-md mt-1 p-2 focus:outline-blue-200 border-2 hover:border-blue-300 hover:outline-blue-200"></textarea>
+                                <textarea onChange={(e) => { setMessage(e.target.value), errors.message = null }} value={message} name="" id="" rows="5" className={`w-full rounded-md mt-1 p-2 focus:outline-blue-200 border-2 ${ errors.message? 'border-red-500' : 'border-2' } hover:border-blue-300 hover:outline-blue-200`} ></textarea>
+                                {errors.message ? <span className="block text-xs text-red-500 font-semibold mt-1">- { errors.message }</span> : null}
                             </label>
                         </div>
                     </div>

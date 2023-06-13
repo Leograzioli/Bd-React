@@ -2,6 +2,7 @@ import './App.css'
 import { Route, BrowserRouter, Routes, useLocation, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import 'react-toastify/dist/ReactToastify.css';
 
 //components
 import AppHeader from './components/AppHeader'
@@ -19,6 +20,7 @@ import Dashboard from './pages/dashboard/DashboardLayout'
 
 //utilities
 import ProtectedRoute from './utilities/ProtectedRoute'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const [token] = useState(Cookies.get('token'))
@@ -31,6 +33,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <AppHeader />
+        <ToastContainer />
         <Routes>
 
           {/* guests */}
